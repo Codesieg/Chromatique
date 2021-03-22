@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    background-color: #36393F;
+}
+
+#logo {
+    width: 10%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    -ms-transition: -ms-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+}
+
+#logo:hover {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+
+.infos-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.infos-menu i {
+    margin-left: 2px;
+}
+
+.wrapper-menu {
+    display: flex;
+    align-items: center;
+}
+
+.field {
+    border: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 10px 20px !important;
+    background: white !important;
+    border-radius: 3px !important;
+    box-shadow: 0px 8px 15px rgba(75, 72, 72, 0.1) !important;
+    -webkit-transition: all 0.4s ease !important;
+    transition: all 0.4s ease !important;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    margin: 0 20px 0 0px;
+}
+
+.login a {
+    margin: 0 0 0 50px;
+}
+
+#wrap {
+    font-family: sans-serif;
+    font-size: 21px;
+    line-height: 1.6;
+    margin: 0;
+    float: left;
+    color: #f00;
+    transition: transform .4s cubic-bezier(.25, .1, .25, 1);
+}
+
+.white {
+    color: #ffff;
+}
+
+#wrap:not(:target) {
+    transform: translate3d(-335px, 0, 0);
+}
+
+#wrap:target {
+    transform: translate3d(0, 0, 0);
+}
+
+#open,
+#close {
+    height: 44px;
+    text-align: right;
+    display: block;
+    margin-right: -30px;
+}
+
+#wrap:target #open,
+#wrap:not(:target) #close {
+    display: none;
+}
+
+#wrap:target #open {
+    display: none;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.menu {
+    background: #1e1f22;
+    width: 360px;
+    padding: 0 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.nav {
+    padding: 25px;
+}
+
+p {
+    color: white;
+}
+
+.main {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.hot {
+    border-bottom: solid #DCDDDE 1px;
+    color: #DCDDDE;
+    font-size: 1.8em;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: #1e1f22;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats {
+    display: flex;
+    margin: 10px 0 10px 0;
+}
+
+.views {
+    display: flex;
+}
+
+.resume {
+    width: 75%;
+    margin-left: 5px;
+    font-size: 1.2em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.rating {
+    margin-left: 15px;
+}
