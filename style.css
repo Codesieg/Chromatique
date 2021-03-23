@@ -20,6 +20,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #1e1f22;
+    position: sticky;
+    top: 0.1px;
+    z-index: 9999;
 }
 
 .infos-menu i {
@@ -29,6 +33,10 @@ body {
 .wrapper-menu {
     display: flex;
     align-items: center;
+}
+
+.la-eye {
+    margin: 0 10px 0 0;
 }
 
 .field {
@@ -50,16 +58,45 @@ body {
 }
 
 .login a {
+    margin: 0 5px 0 5px;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+    padding: 5px 5px 5px 5px;
+}
+
+.dropdown-login {
+    position: relative;
+    display: inline-block;
     margin: 0 0 0 50px;
+}
+
+.dropdown-login:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1f22;
+    min-width: 260px;
+    top: 85%;
+    right: 5%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px 8px 16px 8px;
+    z-index: 1;
 }
 
 #wrap {
     font-family: sans-serif;
     font-size: 21px;
-    line-height: 1.6;
+    line-height: 6em;
     margin: 0;
     float: left;
     color: #f00;
+    position: sticky;
+    top: 0.1px;
     transition: transform .4s cubic-bezier(.25, .1, .25, 1);
 }
 
@@ -123,6 +160,7 @@ p {
     border-bottom: solid #DCDDDE 1px;
     color: #DCDDDE;
     font-size: 1.8em;
+    padding: 0 0 5px 0;
 }
 
 .cards {
@@ -149,7 +187,7 @@ p {
 
 .resume {
     width: 75%;
-    margin-left: 5px;
+    margin: 5px 0 0 0;
     font-size: 1.2em;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
