@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromatique</title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/menu.css">
 
 
 </head>
@@ -37,26 +38,21 @@
             </div>
         </div>
     </div>
-    <div id="wrap">
-        <div class="menu">
-            <nav class="nav">
-                <a href="#wrap" id="open">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="34px" height="27px" viewBox="0 0 34 27" enable-background="new 0 0 34 27" xml:space="preserve">
-                    <rect fill="#FFFFFF" width="34" height="4"/>
-                    <rect y="11" fill="#FFFFFF" width="34" height="4"/>
-                    <rect y="23" fill="#FFFFFF" width="34" height="4"/>
-                    </svg>
-                </a>
-                <a href="#" id="close">×</a>
-                <a href="#">One Piece</a>
-                <a href="#">Demon Slayer</a>
-                <a href="#">Dragon Ball Super</a>
-                <a href="#">Highschool of the Dead</a>
-                <a href="#">Naruto</a>
-                <a href="#">Hunter x hunter</a>
-            </nav>
-        </div>
+    <!--  nav burger -->
+    <div class="nav-toggle">
+        <div class="nav-toggle-bar"></div>
     </div>
+    <nav id="nav" class="nav">
+        <ul>
+            <li><a href="#">One Piece</a></li>
+            <li><a href="#">Demon Slayer</a></li>
+            <li><a href="#">Dragon Ball Super</a></li>
+            <li><a href="#">Highschool of the Dead</a></li>
+            <li><a href="#">Naruto</a></li>
+            <li><a href="#">Hunter x hunter</a></li>
+        </ul>
+    </nav>
+
     <!-- wrap -->
     <main class="main">
         <h1 class="hot"> Manga à la une</h1>
@@ -237,5 +233,6 @@
     </main>
 
 </body>
+<script src="assets/js/nav.js"></script>
 
 </html>
