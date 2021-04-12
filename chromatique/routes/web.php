@@ -1,6 +1,10 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\MangasController;
+use App\Http\Controllers\TomesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MangasController::class,'browse']);
+Route::get('/add', [MangasController::class,'add']);
+Route::get('/tome/', [TomesController::class,'browse']);
 
-Route::get('/home', function () {
-    return view('home');
-});
