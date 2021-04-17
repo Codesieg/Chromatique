@@ -12,13 +12,9 @@ class TomesController extends Controller
      *
      * @return App\Models\Mangas
      */
-    public function browse($id)
+    public function browse()
     {
-        $listTomes = Tomes::where('id', $id)
-        ->orderBy('tome_name')
-        ->take(10)
-        ->get();
-
+        $listTomes = Tomes::all();
 
         return view('tomes/tomes', ['listTomes' => $listTomes]);
     }

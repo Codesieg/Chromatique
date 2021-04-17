@@ -14,12 +14,8 @@ class TomesController extends Controller
      */
     public function browse($id)
     {
-        $listTomes = Tomes::where('id', $id)
-        ->orderBy('tome_name')
-        ->take(10)
-        ->get();
+        $listTomes = Tomes::find($id);
 
-
-        return view('tomes/tomes', ['listTomes' => $listTomes]);
+        return view('tomes/tomes', compact('listTomes'));
     }
 }

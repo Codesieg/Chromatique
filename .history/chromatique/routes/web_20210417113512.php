@@ -29,6 +29,7 @@ Route::get('/tome/{id}', [TomesController::class,'browse'])->name('browse_tomes'
 
 //-------------- Route back ----------------
 
+// Route::name('admin')->get('/admin', [AdminMangasController::class,'browse'])->name('admin_browse_mangas');
 
 Route::get(
     '/admin',

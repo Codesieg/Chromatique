@@ -2,9 +2,9 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\MangasController;
 use App\Http\Controllers\TomesController;
-use App\Http\Controllers\AdminMangasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,34 +17,12 @@ use App\Http\Controllers\AdminMangasController;
 |
 */
 //-------------- Route front ----------------
-// Route::get('/', [MangasController::class,'browse'])->name('browse_mangas');
-
-Route::get(
-    '/',
-    [MangasController::class, 'browse']
-)->name('browse_manga');
-
-
+Route::get('/', [MangasController::class,'browse'])->name('browse_mangas');
 Route::get('/tome/{id}', [TomesController::class,'browse'])->name('browse_tomes');
 
 //-------------- Route back ----------------
 
-
-Route::get(
-    '/admin',
-    [AdminMangasController::class, 'browse']
-)->name('admin_browse_mangas');
-
-
-Route::get(
-    '/admin/add',
-    [AdminMangasController::class, 'add']
-)->name('admin_add_manga');
-
-Route::get(
-    '/admin/delete/{id',
-    [AdminMangasController::class, 'delete']
-)->name('admin_delete_manga');
-
-
+Route::name('admin')->get('/admin', [AdminMangasController::class,'browse'])->name('admin_browse_mangas');
+Route::name('admin')->get('/admin/add', [AdminMangasController::class,'add'])->name('admin_add_manga');
+Route::name('admin')->get('/admin/delete/{id}', [AdminMangaController::class,'delete'])->name('admin_delete_manga');
 

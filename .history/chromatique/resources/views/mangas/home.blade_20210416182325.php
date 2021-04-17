@@ -3,6 +3,7 @@
 @section('contenu')
 
     <div class="content">
+        <?php dump($listMangas); ?>
         <section class="cards">
                 @foreach ($listMangas as $manga)
                 

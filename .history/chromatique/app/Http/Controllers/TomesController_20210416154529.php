@@ -15,7 +15,7 @@ class TomesController extends Controller
     public function browse($id)
     {
         $listTomes = Tomes::where('id', $id)
-        ->orderBy('tome_name')
+        ->orderBy('name')
         ->take(10)
         ->get();
 

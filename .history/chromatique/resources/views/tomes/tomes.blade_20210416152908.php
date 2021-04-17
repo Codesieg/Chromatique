@@ -16,15 +16,17 @@
         @section('contenu')
 
         <div class="content">
+            <?php dump($listTomes); ?>
             <section class="cards">
-                    @foreach ($listTomes as $tome)
-                        <a href="{{$tome->id}}">
+                   
+                    
+                        <a href="{{$listTomes->id}}">
                             <div class="card">
-                                <img class="cover" src="<?= asset('assets/mangas/{{$tome->tome_jacket}}') ?>" alt="">
-                                <h1 class="white">{{$tome->tome_name}}</h1>
+                                <img class="cover" src="assets/mangas/{{$listTomes->tome_jacket}}" alt="">
+                                <h1 class="white">{{$listTomes->tome_name}}</h1>
                             </div>
                         </a>
-                    @endforeach     
+                      
             </section>
         </div>
     @endsection
