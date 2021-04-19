@@ -4,13 +4,14 @@ body {
 }
 
 .logo {
-    margin: 5px 5px 5px 5px;
     width: 10%;
+    margin: 5px 5px 5px 5px;
 }
 
-.logo__left {
-    width: 50px
-}
+
+/* .logo {
+    width: 10%;
+} */
 
 .infos-menu {
     display: flex;
@@ -18,6 +19,8 @@ body {
     justify-content: space-between;
     background-color: #1e1f22;
     position: sticky;
+    top: 0.1px;
+    z-index: 9999;
 }
 
 .infos-menu i {

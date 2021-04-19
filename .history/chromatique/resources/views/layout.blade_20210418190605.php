@@ -13,16 +13,15 @@
 
 <header>
     <div class="infos-menu">
-        <ul class="wrapper-menu">
-            
-            <li><img class="logo" src="<?= asset('assets/img/logo.png') ?>" alt=""></li>
-            <li><a href="https://discord.gg/3HH8Usj"><i class="lab la-3x la-discord white"></i></a></li>
-            <li><a href="#"><i class="lab la-3x la-telegram white"></i></a></li>
-            <li><a href="#"><i class="las la-3x la-info-circle white"></i></a></li>
-        </ul>
+        <div class="wrapper-menu">
+            <a class="logo" href="{{route('browse_manga')}}"><img id="logo" src="<?= asset('assets/img/logo.png') ?>" alt="logo"></a>
+            <a href="https://discord.gg/3HH8Usj"><i class="lab la-3x la-discord white"></i></a>
+            <a href="#"><i class="lab la-3x la-telegram white"></i></a>
+            <a href="#"><i class="las la-3x la-info-circle white"></i></a>
+        </div>
     </div>
 </header>
-<body >
+<body>
     <!-- wrap -->
 
     @yield('contenu')

@@ -15,7 +15,7 @@
     <div class="infos-menu">
         <ul class="wrapper-menu">
             
-            <li><img class="logo" src="<?= asset('assets/img/logo.png') ?>" alt=""></li>
+            <li><img src="<?= asset('assets/emg/logo.png') ?>" alt=""></li>
             <li><a href="https://discord.gg/3HH8Usj"><i class="lab la-3x la-discord white"></i></a></li>
             <li><a href="#"><i class="lab la-3x la-telegram white"></i></a></li>
             <li><a href="#"><i class="las la-3x la-info-circle white"></i></a></li>

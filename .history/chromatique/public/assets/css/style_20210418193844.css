@@ -8,10 +8,6 @@ body {
     width: 10%;
 }
 
-.logo__left {
-    width: 50px
-}
-
 .infos-menu {
     display: flex;
     align-items: center;

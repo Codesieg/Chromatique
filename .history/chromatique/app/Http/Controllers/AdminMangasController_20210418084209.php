@@ -103,7 +103,6 @@ class AdminMangasController extends Controller
         $file->created_at = new \datetime();
         $file->save();
 
-        // return redirect()->route('profile');
         return back()->with('success', 'Data Your files has been successfully added');
     }
 
