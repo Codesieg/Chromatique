@@ -14,6 +14,7 @@
 <header>
     <div class="infos-menu">
         <div class="wrapper-menu">
+            
             <img class="logo" src="<?= asset('assets/img/logo.png') ?>" alt="">
             <a href="https://discord.gg/3HH8Usj"><i class="lab la-3x la-discord white"></i></a>
             <a href="#"><i class="lab la-3x la-telegram white"></i></a>
