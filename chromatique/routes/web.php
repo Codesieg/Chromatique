@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangasController;
 use App\Http\Controllers\TomesController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\AdminMangasController;
 
 /*
@@ -22,12 +23,17 @@ use App\Http\Controllers\AdminMangasController;
 Route::get(
     '/',
     [MangasController::class, 'browse']
-)->name('browse_manga');
+)->name('browse_mangas');
 
 Route::get(
     '/tome/{id}', 
     [TomesController::class,'browse']
 )->name('browse_tomes');
+
+Route::get(
+    '/tome/page/{id}', 
+    [PagesController::class,'read']
+)->name('browse_pages');
 
 //-------------- Route back ----------------
 

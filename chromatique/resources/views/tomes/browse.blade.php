@@ -18,7 +18,8 @@
         <div class="content">
             <section class="cards">
                     @foreach ($listTomes as $tome)
-                        <a href="{{$tome->id}}">
+                    {{-- ici j'ai besoin du chapters_id --}}
+                        <a href="page/{{$tome->id}}"> 
                             <div class="card">
                                 <img class="cover" src="<?= asset('assets/mangas/')?>{{$tome->tome_jacket}}" alt="">
                                 <h1 class="white">{{$tome->tome_name}}</h1>

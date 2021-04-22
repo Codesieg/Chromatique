@@ -1,4 +1,4 @@
-@extends ('admin/layout')
+@extends ('layout')
 
 @section('contenu')
 
@@ -26,13 +26,16 @@
                 <td class="text-white">{{$manga->created_at}}</td>
                 <td class="text-white">{{$manga->update_at}}</td>
                 <td>
-                    <button type="button" class="btn btn-danger btn-sm      text-decoration-none text-white"><form action="{{route  ('admin_delete_manga', ['id' => $manga->id])}}" method="post">
-                        <input class="btn btn-default" type="submit" value="Delete">
-                        <input type="hidden" name="_method" value="delete" />
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    </form>
+                    <button type="button" class="btn btn-success btn-sm text-decoration-none text-white">
+                        <a class="text-decoration-none text-white"  href="">Modifier</a>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm text-decoration-none text-white">
+                        <form action="{{route('admin_delete_manga', ['id' => $manga->id])}}" method="post">
+                            <input class="btn btn-danger" type="submit" value="Supprimer">
+                            <input type="hidden" name="_method" value="delete" />
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </form>
                     </button> 
-                    <button type="button" class="btn btn-success btn-sm text-decoration-none text-white"><a class="text-decoration-none text-white"  href="">Modifier</a></button>
                 </td>
             </tr>
             @endforeach

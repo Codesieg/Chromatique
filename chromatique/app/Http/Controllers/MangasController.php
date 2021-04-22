@@ -8,7 +8,7 @@ use App\Models\Mangas;
 class MangasController extends Controller
 {
     /**
-     * Show all the mangs in database.
+     * Show all the mangas in database.
      *
      * @return App\Models\Mangas
      */

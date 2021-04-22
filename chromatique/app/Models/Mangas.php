@@ -16,4 +16,13 @@ class Mangas extends Model
         'manga_banner',
         'users_id',
     ];
+
+    /**
+     * Get the tomes for the manga.
+     */
+    public function tomes()
+    {
+        return $this->hasMany(Tomes::class);
+    }
+
 }
