@@ -21,7 +21,7 @@ class AdminTomesController extends Controller
     {
         $listTomes = Tomes::all();
 
-        return view('admin/tomes/browse', [
+        return view('admin/tomes/detail', [
             'listTomes' => $listTomes
         ]);
     }
@@ -109,13 +109,23 @@ class AdminTomesController extends Controller
                 $jacket = $request->file('tomeJacket');
                 $jacketName = '/' . $tomeName . '/' . $tomeName . '.' . $jacket->extension();        
                 $jacket->move(public_path().'/assets/mangas/'. $mangaDirectory . '/'. ucfirst($tomeName), $jacketName);
+
+                  // Création du tome :
+        $tome = new Tomes();
+        $tome->tome_name = $tomeName;
+        $tome->tome_jacket = ucfirst($jacketName);
+        $tome->tome_number = $tomeNumber;
+        $tome->manga_id = $mangaId;
+        $tome->created_at = new \datetime();
+        $tome->save();
+        $lastTomeId = $tome->id;
             }
         // Boucle sur les pages
             if($request->hasfile('pages'))
             {
                 foreach ($request->file('pages') as $page) {
                     // dump($page->getClientOriginalName());
-                    $pageName = $page->getClientOriginalName();        
+                    $pageName = $mangaDirectory . '/' . $tomeName . '/' . $page->getClientOriginalName();        
                     $page->move(public_path().'/assets/mangas/'. $mangaDirectory . '/'. ucfirst($tomeName), $pageName);
                     $pageNumber = explode('-', $pageName);
                     // dd(substr($pageNumber[1], 0, 2));
@@ -124,7 +134,7 @@ class AdminTomesController extends Controller
                     $page->page_name = $pageName;
                     $page->page_number = substr($pageNumber[1], 0, 2);
                     // faire un explode sur le nom du fichier
-                    $page->mangas_id = $mangaId;
+                    $page->tome_id = $lastTomeId;
                     // $page->chapters_id = $pageNumber[0];
                     $page->created_at = new \datetime();
                     $page->save();
@@ -133,16 +143,9 @@ class AdminTomesController extends Controller
             
             }
 
-        // Création du tome :
-        $tome = new Tomes();
-        $tome->tome_name = $tomeName;
-        $tome->tome_jacket = ucfirst($jacketName);
-        $tome->tome_number = $tomeNumber;
-        $tome->mangas_id = $mangaId;
-        $tome->created_at = new \datetime();
-        $tome->save();
+      
 
-        return redirect()->route('admin_browse_tome');
+        return redirect()->route('admin_read_tome');
     }
 
     /**

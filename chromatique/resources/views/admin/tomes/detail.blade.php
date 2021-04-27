@@ -6,7 +6,7 @@
     <h1>Liste des tomes de {{$mangaName->manga_name}}</h1>
     <div>
         <div class="add">
-            {{-- <button type="button" class="btn btn-primary btn-sm"><a class="text-decoration-none text-white" href="{{route('admin_form_tome', ['id' => $mangaName->id]) }}">Ajouter Tome</a></button> --}}
+            <button type="button" class="btn btn-primary btn-sm"><a class="text-decoration-none text-white" href="{{route('admin_form_tome', ['id' => $mangaName->id]) }}">Ajouter Tome</a></button>
         </div>
         
     </div>
@@ -38,7 +38,7 @@
                     
                     <button type="button" class="btn btn-success btn-sm text-decoration-none text-white">
                         <a class="text-decoration-none text-white" href="{{route('admin_read_tome', ['id' => $tome->id]) }}">Voir Tome</a>
-                        
+
                     </button>
                         <form action="{{route('admin_delete_tome', ['id' => $tome->id])}}" method="post">
                             <input class="btn-sm btn-danger" type="submit" value="Supprimer">

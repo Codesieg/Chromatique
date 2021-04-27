@@ -31,12 +31,9 @@ class PagesController extends Controller
  */
 public function read($id)
 {
-    $listPages = DB::table('mangas')
+    $listPages = DB::table('pages')
         ->select('pages.*',)
-        ->leftJoin('tomes', 'mangas.id', '=', 'tomes.manga_id')
-        ->leftJoin('chapters', 'tomes.id', '=', 'chapters.tomes_id')
-        ->leftJoin('pages', 'chapters.id', '=', 'pages.chapters_id')
-        ->where('mangas.id',$id)
+        ->where('pages.tome_id',$id)
         ->orderBy('page_name')
         ->distinct()
         ->get();
