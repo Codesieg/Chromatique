@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Mangas extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'manga_name',
+        'manga_jacket',
+        'author',
+        'synopsis',
+        'manga_banner',
+        'users_id',
+    ];
+
+        /**
+     * Get the chapters for the manga.
+     */
+    public function chapters()
+    {
+        return $this->hasMany(Chapters::class);
+    }
+}
