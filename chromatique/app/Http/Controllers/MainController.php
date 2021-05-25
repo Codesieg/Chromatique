@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\manga;
+use App\Models\mangas;
 
 
 class MainController extends Controller
@@ -11,7 +11,7 @@ class MainController extends Controller
     public function listAll()
     {
 
-        $mangas = new Manga();
+        $mangas = new Mangas();
         $listMangas = $mangas->getManga();
         // dd($listMangas);
 

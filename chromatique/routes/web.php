@@ -1,12 +1,13 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MangasController;
-use App\Http\Controllers\TomesController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\AdminMangasController;
+use App\Http\Controllers\TomesController;
+use App\Http\Controllers\MangasController;
 use App\Http\Controllers\AdminTomesController;
+use App\Http\Controllers\AdminMangasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,10 @@ Route::delete(
     '/admin/delete/tome/{id}',
     [AdminTomesController::class, 'delete']
 )->name('admin_delete_tome');
+
+Auth::routes();
+
+Route::get(
+        '/home', 
+        [HomeController::class, 'index']
+)->name('home');
