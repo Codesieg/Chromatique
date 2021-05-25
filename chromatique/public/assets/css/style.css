@@ -181,3 +181,17 @@ h1 {
 .manga-thumb {
     width: 20%;
 }
+
+
+/*  Zoom des pages */
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scale {
+    width: 50%;
+    margin: 1% auto;
+}

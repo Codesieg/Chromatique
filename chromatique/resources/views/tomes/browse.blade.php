@@ -22,9 +22,9 @@
                         <a href="page/{{$tome->id}}"> 
                             <div class="card">
                             
-                                    <img class="cover" src="<?= asset('assets/mangas/')?>{{$tome->manga_directory . $tome->tome_jacket}}" alt="">
+                                    <img class="cover" src="<?= asset('assets/mangas/')?>{{$tome->manga_directory . $tome->tome_path}}" alt="">
                     
-                                <h1 class="white">{{$tome->tome_name}}</h1>
+                                <h1 class="white">Tome {{$tome->tome_number}}</h1>
                             </div>
                         </a>
                     @endforeach     

@@ -15,8 +15,8 @@ class CreateTomesTable extends Migration
     {
         Schema::create('tomes', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->integer('tomes_number')->comment('tome\'s name');
-                $table->string('tomes_path')->comment('tome\'s path');
+                $table->integer('tome_number')->comment('tome\'s name');
+                $table->string('tome_path')->comment('tome\'s path');
                 $table->timestamps();
                 $table->unsignedBigInteger("manga_id");
                 $table->foreign("manga_id")
