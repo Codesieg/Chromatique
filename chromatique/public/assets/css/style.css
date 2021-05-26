@@ -185,6 +185,20 @@ h1 {
 
 /*  Zoom des pages */
 
+.zoom {
+    margin: 1%;
+    padding: 0.3em;
+    width: 7%;
+    background-color: #1e1f226e;
+    border-radius: 20px;
+    position: absolute;
+    float: left;
+    top: 850px;
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -194,4 +208,14 @@ h1 {
 .scale {
     width: 50%;
     margin: 1% auto;
+}
+
+.zoom-in {
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+}
+
+.zoom-out {
+    cursor: -webkit-zoom-out;
+    cursor: zoom-out;
 }
