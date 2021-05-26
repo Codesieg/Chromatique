@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Manga
+class Manga_old
 {
 
     private $mangas = [

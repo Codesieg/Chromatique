@@ -16,14 +16,16 @@
         @section('contenu')
 
         <div class="content">
-            <section class="cards">
-                    @foreach ($listPages as $page)
-                            <div class="page">
-                                <img src="<?= asset('assets/mangas/')?>{{$page->page_name}}" alt="">
-                            </div>
-                        </a>
-                    @endforeach     
-            </section>
+            <div class="zoom">
+                <i class="zoom-in las la-3x la-search-plus white"></i>
+                <i class="zoom-out las la-3x la-search-minus white"></i>
+            </div>
+            @foreach ($listPages as $page)
+                <div class="page">
+                    <img class="scale" src="<?= asset('assets/mangas/')?>{{$page->page_file}}" alt="">
+                </div>
+                </a>
+            @endforeach     
         </div>
     @endsection
 

@@ -7,7 +7,7 @@
                 @foreach ($listMangas as $manga)
                     <a href="tome/{{$manga->id}}">
                         <div class="card">
-                            <img class="cover" src="<?= asset('assets/mangas/') ?>{{$manga->manga_directory . $manga->manga_jacket}}" alt="">
+                            <img class="cover" src="<?= asset('assets/mangas/') ?>{{$manga->manga_directory . $manga->manga_cover}}" alt="">
                             <h1 class="white">{{$manga->manga_name}}</h1>
                         </div>
                     </a>

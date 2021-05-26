@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class TomesController extends Controller
 {
-   
+
     /**
      * Show all the tomes from a manga in database.
      *

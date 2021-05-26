@@ -34,7 +34,7 @@ public function read($id)
     $listPages = DB::table('pages')
         ->select('pages.*',)
         ->where('pages.tome_id',$id)
-        ->orderBy('page_name')
+        ->orderBy('page_file')
         ->distinct()
         ->get();
 

@@ -15,7 +15,7 @@ class Mangas extends Model
         'synopsis',
         'manga_banner',
         'manga_directory',
-        'home_order',
+        'manga_home_order',
         'users_id',
         'chapter_id',
     ];
