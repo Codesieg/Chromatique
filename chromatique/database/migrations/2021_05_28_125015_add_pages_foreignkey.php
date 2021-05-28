@@ -13,7 +13,8 @@ class AddPagesForeignkey extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::enableForeignKeyConstraints();
+        Schema::table('pages', function (Blueprint $table) {
             $table->unsignedBigInteger("chapter_id");
             $table->foreign("chapter_id")
                 ->references("id")
@@ -36,7 +37,8 @@ class AddPagesForeignkey extends Migration
      */
     public function down()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+        Schema::table('pages', function (Blueprint $table) {
             $table->dropForeign('pages_chapter_id_foreign');
             $table->dropColumn('chapter_id');
             $table->dropForeign('pages_tome_id_foreign');
