@@ -13,7 +13,8 @@ class AddChaptersForeignkey extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
+        Schema::enableForeignKeyConstraints();
+        Schema::table('chapters', function (Blueprint $table) {
             $table->unsignedBigInteger("tome_id");
             $table->foreign("tome_id")
                 ->references("id")

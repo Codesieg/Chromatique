@@ -14,7 +14,7 @@ class AddTomesForeignkey extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('tomes', function (Blueprint $table) {
+        Schema::table('tomes', function (Blueprint $table) {
             $table->unsignedBigInteger("manga_id");
             $table->foreign("manga_id")
                 ->references("id")
@@ -32,7 +32,7 @@ class AddTomesForeignkey extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('tomes', function (Blueprint $table) {
+        Schema::table('tomes', function (Blueprint $table) {
             $table->dropForeign('tomes_manga_id_foreign');
             $table->dropColumn('manga_id');
     });
