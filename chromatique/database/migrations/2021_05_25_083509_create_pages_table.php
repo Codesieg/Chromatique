@@ -18,18 +18,6 @@ class CreatePagesTable extends Migration
             $table->string('page_file')->comment('page\'s path');
             $table->integer('page_number')->comment('page\'s number');
             $table->timestamps();
-            $table->unsignedBigInteger("chapter_id");
-            $table->foreign("chapter_id")
-                ->references("id")
-                ->on("chapters")
-                ->onDelete("cascade")
-                ->onUpdate('cascade');
-            $table->unsignedBigInteger("tome_id");
-            $table->foreign("tome_id")
-                ->references("id")
-                ->on("tomes")
-                ->onDelete("cascade")
-                ->onUpdate('cascade');
         });
     }
 

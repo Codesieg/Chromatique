@@ -18,12 +18,6 @@ class CreateTomesTable extends Migration
                 $table->integer('tome_number')->comment('tome\'s name');
                 $table->string('tome_path')->comment('tome\'s path');
                 $table->timestamps();
-                $table->unsignedBigInteger("manga_id");
-                $table->foreign("manga_id")
-                    ->references("id")
-                    ->on("mangas")
-                    ->onDelete("cascade")
-                    ->onUpdate('cascade');
         });
     }
 
