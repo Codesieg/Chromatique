@@ -42,7 +42,7 @@ class CreateUsersHistorysTable extends Migration
             $table->unsignedBigInteger("page_id");
             $table->foreign("page_id")
                 ->references("id")
-                ->on("page")
+                ->on("pages")
                 ->onDelete("cascade")
                 ->onUpdate('cascade');
             $table->timestamps();
