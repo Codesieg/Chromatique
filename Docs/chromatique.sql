@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 27 avr. 2021 à 12:48
+-- Généré le :  mar. 27 avr. 2021 à 16:34
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -100,33 +100,21 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `chapters_id` int(10) UNSIGNED DEFAULT NULL,
-  `mangas_id` int(11) NOT NULL,
+  `tome_id` int(11) NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_pages_mangas1` (`chapters_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `pages`
 --
 
-INSERT INTO `pages` (`id`, `page_name`, `page_number`, `created_at`, `updated_at`, `chapters_id`, `mangas_id`) VALUES
-(2, '/One_Piece/tome_93/932-02.png', 2, NULL, NULL, 2, 1),
+INSERT INTO `pages` (`id`, `page_name`, `page_number`, `created_at`, `updated_at`, `chapters_id`, `tome_id`) VALUES
 (6, '/One_Piece/tome_93/932-03.png', 3, NULL, NULL, 2, 1),
 (7, '/One_Piece/tome_93/932-04.png', 1, NULL, NULL, 3, 1),
-(9, '933-02.png', 2, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(10, '933-03.png', 3, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(11, '933-04.png', 4, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(12, '933-05.png', 5, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(13, '933-06.png', 6, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(14, '933-07.png', 7, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(15, '933-08.png', 8, '2021-04-23 10:44:06', '2021-04-23 10:44:06', NULL, 1),
-(16, '936-02.png', 2, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(17, '936-03.png', 3, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(18, '936-04.png', 4, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(19, '936-05.png', 5, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(20, '936-06.png', 6, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(21, '936-07.png', 7, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1),
-(22, '936-08.png', 8, '2021-04-23 10:46:20', '2021-04-23 10:46:20', NULL, 1);
+(51, '/One_Piece/tome_934/934-02.png', 2, '2021-04-27 14:05:18', '2021-04-27 14:05:18', NULL, 24),
+(52, '/One_Piece/tome_934/934-03.png', 3, '2021-04-27 14:05:18', '2021-04-27 14:05:18', NULL, 24),
+(53, '/One_Piece/tome_934/934-04.png', 4, '2021-04-27 14:05:18', '2021-04-27 14:05:18', NULL, 24);
 
 -- --------------------------------------------------------
 
@@ -149,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `tomes` (
   UNIQUE KEY `name_UNIQUE` (`tome_name`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_tomes_mangas1_idx` (`manga_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `tomes`
@@ -157,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `tomes` (
 
 INSERT INTO `tomes` (`id`, `tome_name`, `views`, `rankings`, `tome_jacket`, `tome_number`, `created_at`, `updated_at`, `manga_id`) VALUES
 (1, 'Tome 93', NULL, NULL, '/tome_93/tome-93.jpg', 93, '2021-04-02 22:00:00', NULL, 1),
-(22, 'tome 933', NULL, NULL, '/tome 933/tome 933.png', 933, '2021-04-23 10:44:06', '2021-04-23 10:44:06', 1);
+(24, 'tome_934', NULL, NULL, '/tome_934/tome_934.png', 934, '2021-04-27 14:05:18', '2021-04-27 14:05:18', 1);
 
 -- --------------------------------------------------------
 
@@ -234,8 +222,7 @@ ALTER TABLE `mangas`
 -- Contraintes pour la table `pages`
 --
 ALTER TABLE `pages`
-  ADD CONSTRAINT `fk_pages_chapters1` FOREIGN KEY (`chapters_id`) REFERENCES `chapters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_pages_mangas1` FOREIGN KEY (`chapters_id`) REFERENCES `chapters` (`id`);
+  ADD CONSTRAINT `fk_pages_mangas1` FOREIGN KEY (`chapters_id`) REFERENCES `chapters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tomes`
