@@ -17,20 +17,14 @@ class CreateMangasTable extends Migration
                 $table->bigIncrements('id');
                 $table->string('manga_name')->comment('manga\'s name');
                 $table->string('manga_cover')->comment('manga\'s cover path');
-                $table->string('manga_banner')->comment('manga\'s banner path');
+                $table->string('manga_banner')->comment('manga\'s banner path')->nullable();
                 $table->string('manga_directory')->comment('manga\'s directory path');
-                $table->integer('manga_home_order')->comment('manga\'s home order');
+                $table->integer('manga_home_order')->comment('manga\'s home order')->default(0);
                 $table->timestamps();
                 $table->unsignedBigInteger("uploader_id")->nullable();
                 $table->foreign("uploader_id")->nullable()
                     ->references("id")
                     ->on("users")
-                    ->onDelete("cascade")
-                    ->onUpdate('cascade');
-                $table->unsignedBigInteger("chapter_id");
-                $table->foreign("chapter_id")
-                    ->references("id")
-                    ->on("chapters")
                     ->onDelete("cascade")
                     ->onUpdate('cascade');
         });
