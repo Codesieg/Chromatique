@@ -17,12 +17,6 @@ class CreateChaptersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('chapter_number')->comment('chapter\'s number');
             $table->timestamps();
-            $table->unsignedBigInteger("tome_id");
-            $table->foreign("tome_id")
-                ->references("id")
-                ->on("tomes")
-                ->onDelete("cascade")
-                ->onUpdate('cascade');
         });
     }
 
