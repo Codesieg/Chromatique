@@ -7,6 +7,8 @@ use App\Models\Mangas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminMangasController extends Controller
 {
@@ -93,17 +95,16 @@ class AdminMangasController extends Controller
 
             // On sépare la string pour reformatter le text et on passe tout en minuscule
             $mangaDirectory = strtolower($mangaName);
-            $mangaDirectory = explode(' ', $mangaDirectory);
-            $mangaDirectory = '/' . implode('_', $mangaDirectory);
+            $mangaDirectory = str_replace(' ', '_', $mangaName );
 
             // On attribue le même nom au fichier de la cover
             $coverName = $mangaDirectory;
 
             // On définit le chemin du fichier cover pour la BDD
-            $coverPath = $mangaDirectory . $coverName . '.' . $cover->extension();
-            $mangaPath = $mangaDirectory . $coverName . '.' . $cover->extension();
+            $coverPath = $mangaDirectory . '/' . $coverName . '.' . $cover->extension();
+            $mangaPath = $mangaDirectory .'/'. $coverName . '.' . $cover->extension();
 
-            $publicPath = public_path().'/assets/mangas'. $mangaDirectory;
+            $publicPath = public_path() . '/assets/mangas/'. $mangaDirectory;
             // On déplace le fichier dans le répertoire assets du dossier public
             $cover->move($publicPath, $mangaPath);  
         }
@@ -113,7 +114,7 @@ class AdminMangasController extends Controller
         $file= new Mangas();
         $file->manga_name = ucfirst($mangaName);
         $file->manga_cover = ucfirst($coverPath);
-        $file->manga_directory = ucfirst($mangaDirectory);
+        $file->manga_directory = $mangaDirectory;
         // $file->author = $author;
         // $file->synopsis = $synopsis;
         $file->uploader_id = $uploaderId ;
@@ -131,14 +132,32 @@ class AdminMangasController extends Controller
      */
     public function delete($id)
     {
+        // Je recherche si le manga existe dans la bdd via son id
         $manga = Mangas::find($id);
+        // je vais chercher le nom du dossier
+        $mangaDirectory = public_path() . '/assets/mangas/'.  $manga->manga_directory;
 
+        // si le manga existe
         if ($manga) {
+            // je vais chercher sur son répertoire existe
+            if (File::exists($mangaDirectory)) {
+            // si le répertoir existe je le supprime avec toutes ses dépendances (fichiers, sous dossier)
+                File::deleteDirectory($mangaDirectory);       
+            }else {
+            // je retourne un message d'erreur
+                return back()->with('nop');
+
+            }
+            // je supprime le manga de la bdd et tooutes ses données associés 
             $manga::destroy($id);
+            // je retourne un message de succés
             return back()->with($id . " supprimer", 200);
         } else {
+            // Je retourne un message d'erreur
             return back()->with('nop');
         }
+
+        
     }
 
 }

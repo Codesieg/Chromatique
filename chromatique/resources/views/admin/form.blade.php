@@ -31,11 +31,10 @@
       
         <select class="form-control" name="uploaderId" id="uploaderId">
           <option value="">--Choisir un uploader--</option>
-          @foreach ($uploaderList as $uploader)
-          dump()
-          <option value="{{$uploader->id}}">{{$uploader->name}}</option>
-          @endforeach
-      </select>
+            @foreach ($uploaderList as $uploader)
+              <option value="{{$uploader->id}}">{{$uploader->name}}</option>
+            @endforeach
+        </select>
       </div>
 
       <button type="submit" class="btn btn-success" style="margin-top:10px">Ajouter</button>
@@ -44,3 +43,4 @@
   
 </div>
 @endsection
+
