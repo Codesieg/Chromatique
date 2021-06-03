@@ -21,10 +21,10 @@
         <input class="form-control" type="text" name="author" id="author">
       </div> --}}
 
-      {{-- <div class="form-group" >
+      <div class="form-group" >
         <label class="text-white" for="synopsis">Synopsis</label>
         <input class="form-control" type="text" name="synopsis" id="synopsis">
-      </div> --}}
+      </div>
 
       <div class="form-group" >
         <label class="text-white" for="uploaderId">Uploader</label>

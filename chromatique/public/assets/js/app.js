@@ -4,6 +4,8 @@ const app = {
     // on initialise le js 
     init: function() {
         console.log('%c' + 'Methode init executée', 'color: #f0f; font-size: 1rem; background-color:#fff');
+        // Ciblage du bouton de fermeture des message
+        document.addEventListener("DOMContentLoaded", app.closeFlash());
 
         //ciblage du bouton de zoom in
         let zoomIn = document.querySelector(".zoom-in");
@@ -12,6 +14,7 @@ const app = {
         //ciblage du bouton de zoom out
         let zoomOut = document.querySelector(".zoom-out");
         zoomOut.addEventListener("click", app.zoomOut);
+
 
     },
 
@@ -35,6 +38,11 @@ const app = {
             const width = pageElement.offsetWidth;
             pageElement.style.width = (width - 20) + "px";
         }
+    },
+
+    closeFlash: function() {
+        const flashElement = document.querySelector(".alert");
+        flashElement.classList.add("flash-fade");
     },
 
 };
