@@ -283,6 +283,7 @@ p {
     border-radius: 3px;
     position: relative;
     bottom: 60px;
+    width: 240px
 }
 
 .details-infos {

@@ -16,6 +16,7 @@ class CreateMangasTable extends Migration
         Schema::create('mangas', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('manga_name')->comment('manga\'s name');
+                $table->string('manga_author')->comment('manga\'s author')->nullable()->default('null');
                 $table->string('manga_cover')->comment('manga\'s cover path');
                 $table->string('manga_banner')->comment('manga\'s banner path')->nullable();
                 $table->string('manga_directory')->comment('manga\'s directory path');

@@ -36,6 +36,8 @@ class AdminTomesController extends Controller
     {
         $listTomes = Tomes::where('manga_id', $id)->orderBy('tome_number')->get();
         $mangaName = Mangas::find($id);
+     
+
 
         return view('admin/tomes/detail', compact('listTomes', 'mangaName'));
     }

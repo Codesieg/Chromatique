@@ -16,10 +16,10 @@
         <input class="form-control" type="text" name="mangaName" id="mangaName">
       </div>
 
-      {{-- <div class="form-group" >
+      <div class="form-group" >
         <label class="text-white" for="author">Autheur</label>
         <input class="form-control" type="text" name="author" id="author">
-      </div> --}}
+      </div>
 
       <div class="form-group" >
         <label class="text-white" for="synopsis">Synopsis</label>
@@ -42,5 +42,7 @@
   </div>
   
 </div>
+
+<script type="text/javascript" src="{{ URL::asset('assets/js/flash-message.js') }}"></script>
 @endsection
 

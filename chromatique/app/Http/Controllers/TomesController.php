@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tomes;
+use App\Models\Users;
 use App\Models\Mangas;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,13 @@ class TomesController extends Controller
      */
     public function browse($id)
     {
+        // On récupére la liste des tomes associé au manga
         $listTomes = Tomes::getTomesByManga($id);
-        return view('tomes/browse', compact('listTomes', ));   
+        // On récupére le manga afin d'avoir le datails des fichiers
+        $mangaDetails = Mangas::find($id);   
+        $uploader = Users::find($mangaDetails->uploader_id);
+        
+        return view('tomes/browse', compact('listTomes', 'mangaDetails', 'uploader', 'uploader'));   
     }
 
     /**

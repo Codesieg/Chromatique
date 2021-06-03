@@ -74,7 +74,7 @@ class AdminMangasController extends Controller
     {
         // On récupére le nom du manga et on supprime les espaces vide en debut et fin
         $mangaName = $request->input(trim('mangaName'));
-        // $author = $request->input('author');
+        $author = $request->input('author');
         $synopsis = $request->input('synopsis');
         $uploaderId = $request->input('uploaderId');
 
@@ -118,7 +118,7 @@ class AdminMangasController extends Controller
         $file->manga_name = ucfirst($mangaName);
         $file->manga_cover = ucfirst($coverPath);
         $file->manga_directory = '/' . $mangaDirectory;
-        // $file->author = $author;
+        $file->author = $author;
         $file->manga_synopsis = $synopsis;
         $file->uploader_id = $uploaderId ;
         $file->created_at = new \datetime();

@@ -1,19 +1,18 @@
 // module principal
 
-const app = {
+const zoom = {
     // on initialise le js 
     init: function() {
         console.log('%c' + 'Methode init executée', 'color: #f0f; font-size: 1rem; background-color:#fff');
-        // Ciblage du bouton de fermeture des message
-        document.addEventListener("DOMContentLoaded", app.closeFlash());
+
 
         //ciblage du bouton de zoom in
         let zoomIn = document.querySelector(".zoom-in");
-        zoomIn.addEventListener("click", app.zoomIn);
+        zoomIn.addEventListener("click", zoom.zoomIn);
 
         //ciblage du bouton de zoom out
         let zoomOut = document.querySelector(".zoom-out");
-        zoomOut.addEventListener("click", app.zoomOut);
+        zoomOut.addEventListener("click", zoom.zoomOut);
 
 
     },
@@ -40,13 +39,10 @@ const app = {
         }
     },
 
-    closeFlash: function() {
-        const flashElement = document.querySelector(".alert");
-        flashElement.classList.add("flash-fade");
-    },
+
 
 };
-// initialisation du js une fois que toute la apge est chargé
-document.addEventListener('DOMContentLoaded', app.init);
+// initialisation du js une fois que toute la page est chargé
+document.addEventListener('DOMContentLoaded', zoom.init);
 
 console.log('%c' + 'Scrip.js chargé', 'color: #f0f; font-size: 1rem; background-color:#fff');

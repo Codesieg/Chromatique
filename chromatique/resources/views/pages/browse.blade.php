@@ -16,5 +16,6 @@
                 </a>
             @endforeach     
         </div>
-    
+        <script type="text/javascript" src="{{ URL::asset('assets/js/zoom.js') }}"></script>
+
 @endsection
