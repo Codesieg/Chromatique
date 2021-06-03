@@ -150,7 +150,7 @@ class AdminTomesController extends Controller
             
             }
 
-        return redirect()->route('admin_read_tome');
+        return redirect()->route('admin_browse_tomes');
     }
 
 
