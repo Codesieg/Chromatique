@@ -118,7 +118,7 @@ class AdminMangasController extends Controller
         $file->manga_name = ucfirst($mangaName);
         $file->manga_cover = ucfirst($coverPath);
         $file->manga_directory = '/' . $mangaDirectory;
-        $file->author = $author;
+        $file->manga_author = $author;
         $file->manga_synopsis = $synopsis;
         $file->uploader_id = $uploaderId ;
         $file->created_at = new \datetime();
