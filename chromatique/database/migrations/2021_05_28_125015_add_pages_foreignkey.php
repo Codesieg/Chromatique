@@ -15,7 +15,7 @@ class AddPagesForeignkey extends Migration
     {
         Schema::enableForeignKeyConstraints();
         Schema::table('pages', function (Blueprint $table) {
-            $table->unsignedBigInteger("chapter_id");
+            $table->unsignedBigInteger("chapter_id")->default("null");
             $table->foreign("chapter_id")
                 ->references("id")
                 ->on("chapters")

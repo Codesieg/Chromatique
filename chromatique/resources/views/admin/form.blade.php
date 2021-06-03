@@ -7,11 +7,8 @@
   <form method="post" action="{{route('admin_add_manga')}}" enctype="multipart/form-data" class="col-8 align-self-center">
     {{csrf_field()}}
       <div class="">
-        <label class="text-white" for="mangaJacket">Couverture du Manga</label>
-        <input type="file" name="mangaJacket" class="myfrm form-control">
-        {{-- <div class="input-group-btn"> 
-          <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Ajouter</button>
-        </div> --}}
+        <label class="text-white" for="mangaCover">Couverture du Manga</label>
+        <input type="file" name="mangaCover" class="myfrm form-control">
       </div>
 
       <div class="" >
@@ -30,15 +27,14 @@
       </div>
 
       <div class="form-group" >
-        <label class="text-white" for="userId">Uploader</label>
+        <label class="text-white" for="uploaderId">Uploader</label>
       
-        <select class="form-control" name="userId" id="userId">
+        <select class="form-control" name="uploaderId" id="uploaderId">
           <option value="">--Choisir un uploader--</option>
-          @foreach ($uploaderList as $uploader)
-          dump()
-          <option value="{{$uploader->id}}">{{$uploader->pseudo}}</option>
-          @endforeach
-      </select>
+            @foreach ($uploaderList as $uploader)
+              <option value="{{$uploader->id}}">{{$uploader->name}}</option>
+            @endforeach
+        </select>
       </div>
 
       <button type="submit" class="btn btn-success" style="margin-top:10px">Ajouter</button>
@@ -46,4 +42,7 @@
   </div>
   
 </div>
+
+<script type="text/javascript" src="{{ URL::asset('assets/js/flash-message.js') }}"></script>
 @endsection
+

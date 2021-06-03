@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
-use App\Http\Controllers\AdminTomesController;
-use App\Http\Controllers\AdminMangasController;
+use App\Http\Controllers\Admin\AdminTomesController;
+use App\Http\Controllers\Admin\AdminMangasController;
+
 
 /*
 |--------------------------------------------------------------------------

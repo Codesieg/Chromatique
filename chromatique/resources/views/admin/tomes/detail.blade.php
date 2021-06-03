@@ -27,8 +27,8 @@
             @foreach ($listTomes as $tome)
             <tr>
                 {{-- <td class="text-white">{{$tome->id}}</td> --}}
-                <td class="text-white">{{$tome->tome_name}}</td>
-                <td class="text-white manga-thumb"><img class="manga-thumb" src="<?= asset('assets/mangas/')?>{{$mangaName->manga_directory . $tome->tome_jacket}}" alt=""></td>
+                <td class="text-white">Tome {{$tome->tome_number}}</td>
+                <td class="text-white manga-thumb"><img class="manga-thumb" src="<?= asset('assets/mangas/')?>{{$mangaName->manga_directory . $tome->tome_path}}" alt=""></td>
                 <td class="text-white">{{$tome->created_at}}</td>
                 <td class="text-white">{{$tome->updated_at}}</td>
                 <td>
