@@ -17,11 +17,23 @@
     <div class="infos-menu">
         <div class="wrapper-menu">
             <img class="logo" src="<?= asset('assets/img/logo.png') ?>" alt="">
+            {{dump(Auth::check())}}
+            
+            @if (Auth::check())
             <a href="{{route('browse_mangas')}}"><i class="las la-3x la-home white"></i></a>
             <a href="{{route('admin_browse_mangas')}}"><i class="las la-3x la-user-shield white"></i></a>
+            @endif
             <a href="https://discord.gg/3HH8Usj"><i class="lab la-3x la-discord white"></i></a>
             <a href="#"><i class="lab la-3x la-telegram white"></i></a>
             <a href="#"><i class="las la-3x la-info-circle white"></i></a>
+        </div>
+        <div class="login">
+            @if (!Auth::check())
+                <a class="fs-5" href="{{route('login')}}">Connexion </a>
+                <a class="fs-5" href="{{route('register')}}">Inscription</i></a>
+            @else
+                <a class="fs-5" href="">Deconnexion </a>
+            @endif
         </div>
     </div>
 </header>
