@@ -57,7 +57,7 @@ class AdminMangasController extends Controller
      */
     public function form()
     {
-        $uploaderList = Users::All();
+        $uploaderList = User::All();
         // dd($uploaderList);
 
         return view('admin/form', 
