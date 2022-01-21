@@ -55,6 +55,7 @@ class AdminMangasController extends Controller
      *
      * @return void
      */
+    // TODO: Venir récupérer l'uploader de session
     public function form()
     {
         $uploaderList = User::All();
@@ -70,6 +71,11 @@ class AdminMangasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Venir récup les dossier sur un emplacemetn quelquonque et enregistrer cette emplacement en BDD
+    // ne pas recréer des dossiers et des fichiers pour le contenu sinon tout sera doublé.
+    // 1 - Je viens dans un dossier précis stocker tous les managas éxistant, Avoir une conf pour indiquer où est le dossier des mangas
+    // 2 - Je cré une boucle qui enregistre l'url de chaque dossier / sous dossier et fichier
     public function add(Request $request)
     {
         // On récupére le nom du manga et on supprime les espaces vide en debut et fin
