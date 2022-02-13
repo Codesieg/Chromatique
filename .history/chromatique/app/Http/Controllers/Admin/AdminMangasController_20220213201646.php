@@ -174,6 +174,7 @@ class AdminMangasController extends Controller
             $file->manga_directory = '/' . $mangaName;
             $file->created_at = new \datetime();
             $file->save();
+
         }
 
 
@@ -181,6 +182,27 @@ class AdminMangasController extends Controller
 // Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant
 // Pour chaque fichier dans le sous dossier j'enregistre chaques pages en vérifiant qu'elle n'est pas existante
 
+
+        // $filesArray[2]
+        // $files[7]
+        // $filesArray[2]
+
+        // array:5 [▼
+        // 0 => "public"
+        // 1 => "mangas"
+        // 2 => "One_Piece"
+        // 3 => "tome_1"
+        // 4 => "932-11.png"
+
+        // $file = new Mangas();
+        // $file->manga_name = ucfirst($mangaName);
+        // $file->manga_cover = ucfirst($coverPath);
+        // $file->manga_directory = '/' . $mangaDirectory;
+        // $file->manga_author = $author;
+        // $file->manga_synopsis = $synopsis;
+        // $file->uploader_id = $uploaderId ;
+        // $file->created_at = new \datetime();
+        // $file->save();
     }
 
     /**

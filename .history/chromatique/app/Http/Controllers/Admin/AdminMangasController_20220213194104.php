@@ -148,32 +148,38 @@ class AdminMangasController extends Controller
         // function readManga($mangaName) {
         //     return $files;
         // }
-        $AllMangasNames = [];
+            $AllMangasNames = [];
 
         foreach ($allFiles as $manga) {
             $NewManga = explode("/", $manga);
-            // dump($NewManga[2]);
-            if (in_array($NewManga[2], $AllMangasNames, true)) {
-                echo "Manga déja présent";
-            } else {
-                $AllMangasNames[] = $NewManga[2];
-            }     
+            if (!in_array($NewManga, $AllMangasNames)) {
+                $AllMangsNames[] = $NewManga[2];
+            }
+
+            dump($AllMangsNames);
+
         }
-        // dump($AllMangasNames);
         
         
-        foreach ($AllMangasNames as $mangaName) {
-            // $NewMangaName = explode("_", $mangaName);
+        foreach ($allFiles as $NewManga) {
+            
+            $mangaName = explode("/", $allFiles[0]);
             // $mangaDirectory = explode("/", $NewManga[0]);
-            // dd($NewMangaName, $allFiles);
-            // $mangaDirectory = strtolower($mangaName);
-            // $mangaDirectory =  str_replace('_', '', $mangaName ); // Amélioré le tout avec une regex afin de prendre en compte plusieurs format
+            dd($mangaName, $allFiles);
+
+            $mangaDirectory = strtolower($mangaName);
+            $mangaDirectory =  str_replace('_', '', $mangaName ); // Amélioré le tout avec une regex afin de prendre en compte plusieurs format
+
             $file = new Mangas();
             $file->manga_name = ucfirst($mangaName);
-            $file->manga_cover = ucfirst($mangaName);
-            $file->manga_directory = '/' . $mangaName;
+            // $file->manga_cover = ucfirst($coverPath);
+            $file->manga_directory = '/' . $mangaDirectory;
+            // $file->manga_author = $author;
+            // $file->manga_synopsis = $synopsis;
+            // $file->uploader_id = $uploaderId ;
             $file->created_at = new \datetime();
             $file->save();
+
         }
 
 
@@ -181,6 +187,27 @@ class AdminMangasController extends Controller
 // Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant
 // Pour chaque fichier dans le sous dossier j'enregistre chaques pages en vérifiant qu'elle n'est pas existante
 
+
+        // $filesArray[2]
+        // $files[7]
+        // $filesArray[2]
+
+        // array:5 [▼
+        // 0 => "public"
+        // 1 => "mangas"
+        // 2 => "One_Piece"
+        // 3 => "tome_1"
+        // 4 => "932-11.png"
+
+        // $file = new Mangas();
+        // $file->manga_name = ucfirst($mangaName);
+        // $file->manga_cover = ucfirst($coverPath);
+        // $file->manga_directory = '/' . $mangaDirectory;
+        // $file->manga_author = $author;
+        // $file->manga_synopsis = $synopsis;
+        // $file->uploader_id = $uploaderId ;
+        // $file->created_at = new \datetime();
+        // $file->save();
     }
 
     /**
