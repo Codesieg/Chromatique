@@ -139,7 +139,7 @@ class AdminMangasController extends Controller
     public function insert(Request $request) {
         //  Je récupére tous les mangas dans le dossier mangas
         $allFiles = Storage::disk('local')->allFiles('public/mangas/');
-        // dump($allFiles);
+
         // Je doit séparer chacun manga par dossier en fonction de leur nom et stocker le nom en bdd.
         // Lorsque j'ai récupérer les noms de chaque manga, je peut passé celui-ci dans ma variable de ma fonction readManga dans une eutre methode (celle de lecture)
 
@@ -154,42 +154,32 @@ class AdminMangasController extends Controller
             $NewManga = explode("/", $manga);
             // dump($NewManga[2]);
             if (in_array($NewManga[2], $AllMangasNames, true)) {
-                echo "Manga déja présent </br>";
+                echo "Manga déja présent";
             } else {
                 $AllMangasNames[] = $NewManga[2];
             }     
         }
         // dump($AllMangasNames);
         
-        $isMangaInsertInDatabase = [];
+        
         foreach ($AllMangasNames as $mangaName) {
             // $NewMangaName = explode("_", $mangaName);
             // $mangaDirectory = explode("/", $NewManga[0]);
             // dd($NewMangaName, $allFiles);
             // $mangaDirectory = strtolower($mangaName);
             // $mangaDirectory =  str_replace('_', '', $mangaName ); // Amélioré le tout avec une regex afin de prendre en compte plusieurs format
-            $file = Mangas::firstOrCreate(
-                ['manga_name' => $mangaName ],
-                ['manga_cover' => $mangaName,
-                'manga_directory' => $mangaName,
-                'created_at' => new \datetime()],
-            );
+            $file = Mangas::firstOrCreate([
+                'manga_name' => $mangaName
+            ]);
 
-            if ($file->exits == false) {
-                $isMangaInsertInDatabase[] = $mangaName;
-            }
-
-            // dd($isMangaInsertInDatabase);
-
+            // $file = new Mangas();
+            $file->manga_name = ucfirst($mangaName);
+            $file->manga_cover = ucfirst($mangaName);
+            $file->manga_directory = '/' . $mangaName;
+            $file->created_at = new \datetime();
+            $file->save();
         }
-        if ($isMangaInsertInDatabase != null) {
-            // return redirect()->route('profile');
-            return view('admin/form', [
-                'newManga' => $isMangaInsertInDatabase
-                ])->with('success', 'Les mangas ont était ajouté !', 200);
-        } else {
-            return back()->with('success', 'Les mangas sont déjà présent !', 200);
-        }
+
 
 // Pour chaque dossier parents -> je crée un nouveau manga en verifiant qu'il n'est pas existant
 // Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant

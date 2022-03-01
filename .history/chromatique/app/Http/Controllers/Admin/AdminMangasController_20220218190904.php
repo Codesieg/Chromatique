@@ -22,7 +22,8 @@ class AdminMangasController extends Controller
         $listManga = Mangas::all()->sortBy('manga_name');
 
         return view('admin/browse', [
-            'listMangas' => $listManga
+            'listMangas' => $listManga,
+            'newManga' => "",
         ]);
     }
     
@@ -63,7 +64,9 @@ class AdminMangasController extends Controller
         // dd($uploaderList);
 
         return view('admin/form', 
-        ['uploaderList' => $uploaderList]
+        ['uploaderList' => $uploaderList,
+        'newManga' => "",
+        ]
     );
     }
 

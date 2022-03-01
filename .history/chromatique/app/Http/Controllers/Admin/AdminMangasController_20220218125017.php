@@ -161,7 +161,7 @@ class AdminMangasController extends Controller
         }
         // dump($AllMangasNames);
         
-        $isMangaInsertInDatabase = [];
+        
         foreach ($AllMangasNames as $mangaName) {
             // $NewMangaName = explode("_", $mangaName);
             // $mangaDirectory = explode("/", $NewManga[0]);
@@ -175,21 +175,9 @@ class AdminMangasController extends Controller
                 'created_at' => new \datetime()],
             );
 
-            if ($file->exits == false) {
-                $isMangaInsertInDatabase[] = $mangaName;
-            }
-
-            // dd($isMangaInsertInDatabase);
 
         }
-        if ($isMangaInsertInDatabase != null) {
-            // return redirect()->route('profile');
-            return view('admin/form', [
-                'newManga' => $isMangaInsertInDatabase
-                ])->with('success', 'Les mangas ont était ajouté !', 200);
-        } else {
-            return back()->with('success', 'Les mangas sont déjà présent !', 200);
-        }
+
 
 // Pour chaque dossier parents -> je crée un nouveau manga en verifiant qu'il n'est pas existant
 // Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant

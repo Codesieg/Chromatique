@@ -139,7 +139,7 @@ class AdminMangasController extends Controller
     public function insert(Request $request) {
         //  Je récupére tous les mangas dans le dossier mangas
         $allFiles = Storage::disk('local')->allFiles('public/mangas/');
-        // dump($allFiles);
+        dump($allFiles);
         // Je doit séparer chacun manga par dossier en fonction de leur nom et stocker le nom en bdd.
         // Lorsque j'ai récupérer les noms de chaque manga, je peut passé celui-ci dans ma variable de ma fonction readManga dans une eutre methode (celle de lecture)
 
@@ -159,9 +159,9 @@ class AdminMangasController extends Controller
                 $AllMangasNames[] = $NewManga[2];
             }     
         }
-        // dump($AllMangasNames);
+        dump($AllMangasNames);
         
-        $isMangaInsertInDatabase = [];
+        
         foreach ($AllMangasNames as $mangaName) {
             // $NewMangaName = explode("_", $mangaName);
             // $mangaDirectory = explode("/", $NewManga[0]);
@@ -175,21 +175,9 @@ class AdminMangasController extends Controller
                 'created_at' => new \datetime()],
             );
 
-            if ($file->exits == false) {
-                $isMangaInsertInDatabase[] = $mangaName;
-            }
-
-            // dd($isMangaInsertInDatabase);
 
         }
-        if ($isMangaInsertInDatabase != null) {
-            // return redirect()->route('profile');
-            return view('admin/form', [
-                'newManga' => $isMangaInsertInDatabase
-                ])->with('success', 'Les mangas ont était ajouté !', 200);
-        } else {
-            return back()->with('success', 'Les mangas sont déjà présent !', 200);
-        }
+
 
 // Pour chaque dossier parents -> je crée un nouveau manga en verifiant qu'il n'est pas existant
 // Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant

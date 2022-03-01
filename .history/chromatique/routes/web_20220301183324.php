@@ -30,7 +30,7 @@ Route::get(
 )->name('browse_mangas');
 
 Route::get(
-    '/tome/{id}', 
+    '/tome/browse/{id}', 
     [TomesController::class,'browse']
 )->name('browse_tomes');
 
@@ -56,6 +56,7 @@ Route::get(
     [AdminMangasController::class, 'form']
 )->name('admin_form_manga')->middleware('auth');
 
+
 Route::post(
     '/admin/add/manga',
     [AdminMangasController::class, 'add']
@@ -66,6 +67,10 @@ Route::delete(
     [AdminMangasController::class, 'delete']
 )->name('admin_delete_manga')->middleware('auth');
 
+Route::post(
+    '/admin/insert',
+    [AdminMangasController::class, 'insert']
+)->name('admin_insert_manga')->middleware('auth');
 //-------------- Route back-office tome ----------------
 
 // On récupère l'id du manga sur cette route et on affiche le formulaire d'ajout d'un tome par rapport à ça franchise

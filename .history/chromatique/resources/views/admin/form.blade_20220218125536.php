@@ -39,13 +39,13 @@
 
         <button type="submit" class="btn btn-success" style="margin-top:10px">Ajouter</button>
     </form>        
-    <div class="row">
-      <h3 class="col-8 text-white">Ajout automatique depuis dossier publique</h3>
-      <form method="post" action="{{route('admin_insert_manga')}}" enctype="multipart/form-data" class="col-8 align-self-center">
-        {{csrf_field()}}
-        <button type="submit" class="btn btn-success" style="margin-top:10px">Scanner</button>
-      </form>   
-    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-8 text-white">Ajout automatique depuis dossier publique</h3>
+    <form method="post" action="{{route('admin_insert_manga')}}" enctype="multipart/form-data" class="col-8 align-self-center">
+      {{csrf_field()}}
+      <button type="submit" class="btn btn-success" style="margin-top:10px">Scanner</button>
+    </form>   
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/js/flash-message.js') }}"></script>

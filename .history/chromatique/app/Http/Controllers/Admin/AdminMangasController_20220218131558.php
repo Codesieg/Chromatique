@@ -179,14 +179,12 @@ class AdminMangasController extends Controller
                 $isMangaInsertInDatabase[] = $mangaName;
             }
 
-            // dd($isMangaInsertInDatabase);
+            dd($isMangaInsertInDatabase);
 
         }
         if ($isMangaInsertInDatabase != null) {
             // return redirect()->route('profile');
-            return view('admin/form', [
-                'newManga' => $isMangaInsertInDatabase
-                ])->with('success', 'Les mangas ont était ajouté !', 200);
+            return back()->with('success', 'Les mangas ont était ajouté !', 200);
         } else {
             return back()->with('success', 'Les mangas sont déjà présent !', 200);
         }

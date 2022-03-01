@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
 
@@ -38,28 +39,37 @@ Route::get(
     [PagesController::class,'read']
 )->name('browse_pages');
 
-//-------------- Route back manga ----------------
+// Route::post(
+//     '/logout', 
+//     [LoginController::class,'logout']
+// )->name('user_logout');
+
+//-------------- Route back-office manga ----------------
 
 Route::get(
     '/admin',
     [AdminMangasController::class, 'browse']
-)->name('admin_browse_mangas');
+)->name('admin_browse_mangas')->middleware('auth');
 
 Route::get(
     '/admin/add/manga',
     [AdminMangasController::class, 'form']
-)->name('admin_form_manga');
+)->name('admin_form_manga')->middleware('auth');
 
 Route::post(
     '/admin/add/manga',
     [AdminMangasController::class, 'add']
-)->name('admin_add_manga');
+)->name('admin_add_manga')->middleware('auth');
 
 Route::delete(
     '/admin/delete/{id}',
     [AdminMangasController::class, 'delete']
-)->name('admin_delete_manga');
+)->name('admin_delete_manga')->middleware('auth');
 
+Route::post(
+    '/admin/insert',
+    [AdminMangasController::class, 'insert']
+)->name('admin_insert_manga')->middleware('auth');
 //-------------- Route back-office tome ----------------
 
 // On récupère l'id du manga sur cette route et on affiche le formulaire d'ajout d'un tome par rapport à ça franchise
@@ -91,6 +101,14 @@ Route::delete(
     '/admin/delete/tome/{id}',
     [AdminTomesController::class, 'delete']
 )->name('admin_delete_tome')->middleware('auth');
+
+// Permet de modifier un tome
+Route::get(
+    '/admin/tome/edit/{id}',
+    [AdminTomesController::class, 'edit']
+)->name('admin_edit_tome')->middleware('auth');
+
+// ---------------route d'authentification------------
 
 Auth::routes();
 

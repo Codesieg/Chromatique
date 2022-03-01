@@ -46,6 +46,11 @@
         <button type="submit" class="btn btn-success" style="margin-top:10px">Scanner</button>
       </form>   
     </div>
+    @foreach ($newManga as $manga)
+    <tr>
+      <td class="text-white">{{$manga->manga_name}}</td>
+    </tr>
+    @endforeach
 </div>
 
 <script type="text/javascript" src="{{ URL::asset('assets/js/flash-message.js') }}"></script>

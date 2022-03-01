@@ -14,7 +14,7 @@
                 <h1 class="details-infos-title white">{{ $mangaDetails->manga_name }}</h1>
                 <p>de {{ $mangaDetails->manga_author }}</p>
                 <p class="deatils-infos-synopsys">{{ $mangaDetails->manga_synopsis }}</p>
-                <p class="details-infos-uploader">Uploader : {{ $uploader->name }}</p>
+                {{-- <p class="details-infos-uploader">Uploader : {{ $uploader->name }}</p> --}}
             </div>
         </div>
         <div class="content">
