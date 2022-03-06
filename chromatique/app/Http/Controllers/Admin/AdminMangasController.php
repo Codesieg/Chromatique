@@ -140,28 +140,18 @@ class AdminMangasController extends Controller
         //  Je récupére tous les mangas dans le dossier mangas
 
         // TODO: $mangaName = $request->input(trim('pathManga')); Parcourir un dossier du serveur pour ajout
+
         $allFiles = Storage::disk('local')->allFiles('public/mangas/');
         $AllMangasNames = [];
 
         foreach ($allFiles as $manga) {
             $newManga = explode("/", $manga);
-            if (in_array($newManga[2], $AllMangasNames, true)) {
-                echo "Manga déja présent </br>";
-            } else {
+            if (!in_array($newManga[2], $AllMangasNames, true)) {
                 $AllMangasNames[] = $newManga[2];
             }     
-        }
-        // dd($newManga);
-        
+        }        
         $isMangaInsertInDatabase = [];
         foreach ($AllMangasNames as $newManga) {
-            // dd($newManga);
-            // $NewMangaName = explode("_", $mangaName);
-            // $mangaDirectory = explode("/", $NewManga[0]);
-            // dd($NewMangaName, $allFiles);
-            // $mangaDirectory = strtolower($newManga);
-            // $mangaDirectory =  str_replace('_', '', $mangaName ); // Amélioré le tout avec une regex afin de prendre en compte plusieurs format
-            // dd($newTome);
             $manga = Mangas::firstOrCreate(
                 ['manga_name' => $newManga],
                 ['manga_cover' => $newManga .".jpg",
@@ -171,15 +161,14 @@ class AdminMangasController extends Controller
             );
 
             $lastMangaId = $manga->id;
-            // dd($lastMangaId);
+
             AdminTomesController::insert($newManga, $lastMangaId);
             
             if ($manga->exits == false) {
                 $isMangaInsertInDatabase[] = $newManga;
             }
-            
         }
-        // dd($tome);
+
         if ($isMangaInsertInDatabase != null) {
             // return redirect()->route('profile');
             return view('admin/form', [
@@ -188,11 +177,6 @@ class AdminMangasController extends Controller
         } else {
             return back()->with('success', 'Les mangas sont déjà présent !', 200);
         }
-
-// Pour chaque dossier parents -> je crée un nouveau manga en verifiant qu'il n'est pas existant
-// Pour chaque sous dossier je crée un nouveau tome en verifiant qu'il n'est pas existant
-// Pour chaque fichier dans le sous dossier j'enregistre chaques pages en vérifiant qu'elle n'est pas existante
-
     }
 
     /**

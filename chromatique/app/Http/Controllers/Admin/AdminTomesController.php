@@ -21,7 +21,7 @@ class AdminTomesController extends Controller
     public function browse()
     {
         $listTomes = Tomes::all()->sortBy('tome_number');
-        dump($listTomes);
+        
 
         return view('admin/tomes/detail', [
             'listTomes' => $listTomes
@@ -37,7 +37,6 @@ class AdminTomesController extends Controller
     {
         $listTomes = Tomes::where('manga_id', $id)->orderBy('tome_number')->get();
         $mangaName = Mangas::find($id);
-
 
         return view('admin/tomes/detail', compact('listTomes', 'mangaName'));
     }
@@ -138,7 +137,7 @@ class AdminTomesController extends Controller
                     $page->move(public_path().'/assets/mangas/'. $mangaDirectory . '/'. ucfirst($tomeName), $pagePath);
                     $pageNumber = explode('-', $pagePath);
                     // dd(substr($pageNumber[1], 0, 2));
-                       // Création des pages du page :
+                       // Création des pages du tome :
                     $page = new Pages();
                     $page->page_file = $pagePath;
                     $page->page_number = substr($pageNumber[1], 0, 2);
@@ -163,33 +162,57 @@ class AdminTomesController extends Controller
     public static function insert($newManga, $lastMangaId)
     {
         $directories = Storage::directories('public/mangas/' . $newManga);
-        dump($directories);
-            $AllNewTomes = [];
+        $AllNewTomes = [];
         foreach ($directories as $tome) {
             $newTome = explode("/", $tome);
             // dd($newTome);
             if (in_array($tome[3], $AllNewTomes, true)) {
                 echo "Tome déja présent </br>";
             } else {
-                $AllNewTomes[] = $newTome[3];                
+                $table = $newTome[3]; 
+                $AllNewTomes[$table]["number"] = $newTome[3];                
             }     
+            $allPagesForCover = Storage::disk('local')->allFiles('public/mangas/'. $newManga . '/' . $newTome[3]);
+            foreach ($allPagesForCover as $cover) {
+                $pagePath = explode("/", $cover);
+                array_splice($pagePath, 0 , 2);
+                $pagePath = implode("/", $pagePath);
+                $AllNewTomes[$table]['cover'] = $pagePath;
+            }
         }
         
-            foreach ($AllNewTomes as $newTome) { 
-                $tomeNumber = explode("_", $newTome);
-
+        
+        foreach ($AllNewTomes as $newTome) { 
+                $tomeNumber = explode("_", $newTome['number']);
+                // dd($tomeNumber[1]);
                 $tome = Tomes::firstOrCreate(
-                    ['manga_id'=>$lastMangaId, 'tome_number' => $tomeNumber[1]],
-                    ['tome_path' => $newTome,
-                    'tome_number' => $tomeNumber[1],
+                    ['manga_id'=> $lastMangaId, 'tome_number' => $tomeNumber[1]],
+                    ['tome_number' => $tomeNumber[1],
+                    'tome_cover' => $newTome['cover'],
                     'manga_id' => $lastMangaId,
                     'created_at' => new \datetime()],
                 );
-                
+            
                 $lastTomeId = $tome->id;
+        
+                // Boucle sur les pages
+                $allPages = Storage::disk('local')->allFiles('public/mangas/'. $newManga . '/' . $newTome['number']);
+                // dd($allPages);
+                foreach ($allPages as $page) {
+                    $pagePath = explode("/", $page);
+                    array_splice($pagePath, 0 , 2);
+                    $pagePath = implode("/", $pagePath);
 
-            }
-
+                    Pages::firstOrCreate(
+                        ['tome_id'=> $lastTomeId, 'page_number' => $tomeNumber[1]],
+                        ['page_number' => $pagePath,
+                        'page_file' => $pagePath,
+                        'tome_id' => $lastTomeId,
+                        'created_at' => new \datetime()],
+                    );
+                }
+            
+        }
     }
 
 /**

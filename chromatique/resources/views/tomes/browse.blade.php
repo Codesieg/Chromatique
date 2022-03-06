@@ -22,9 +22,9 @@
         <div class="content">
             <section class="cards">
                     @foreach ($listTomes as $tome)
-                        <a href="page/{{ $tome->id }}"> 
+                        <a href="/tome/page/{{ $tome->id }}"> 
                             <div class="card">
-                                    <img class="cover" src="<?= asset('assets/mangas/') ?>{{ $tome->manga_directory . "/" . $tome->tome_cover }}" alt="">
+                                    <img class="cover" src="<?= asset('storage/mangas/') ?>{{"/" . $tome->tome_cover }}" alt="">
                                     <div class="main-text main-text--bottom">
                                         <h1 class="white title">Tome {{ $tome->tome_number }}</h1>
                                         {{-- <i class="las la-download"></i> --}}

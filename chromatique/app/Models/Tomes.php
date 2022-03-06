@@ -11,7 +11,7 @@ class Tomes extends Model
     use HasFactory;
     protected $fillable = [
         'tome_number',
-        'tome_path',
+        'tome_cover',
         'manga_id',
 
     ];
@@ -34,12 +34,14 @@ class Tomes extends Model
     public static function getTomesByManga($id)
     {
         $listTomes = DB::table('mangas')
-                ->select('tomes.*', 'mangas.manga_directory',)
+                ->select('tomes.*', 'mangas.manga_directory')
                 ->leftJoin('tomes', 'mangas.id', '=', 'tomes.manga_id')
+                ->leftJoin('pages', 'tomes.id', '=', 'pages.tome_id')
                 ->where('mangas.id', $id)
                 ->orderBy('tome_number')
                 ->distinct()
                 ->get();
+
         return $listTomes;
     }
 
@@ -53,6 +55,7 @@ class Tomes extends Model
             ->where('manga_id',$id)
             ->distinct()
             ->get();
+
         return $listPages;
     }
 

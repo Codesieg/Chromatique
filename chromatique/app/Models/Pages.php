@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pages extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'page_number',
+        'page_file',
+        'tome_id',
 
+    ];
     /**
      * Get the manga that owns the tome.
      */
