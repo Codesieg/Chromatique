@@ -141,21 +141,22 @@ class AdminMangasController extends Controller
 
         // TODO: $mangaName = $request->input(trim('pathManga')); Parcourir un dossier du serveur pour ajout
 
-        $allFiles = Storage::disk('local')->allFiles('public/mangas/');
+        $directories = Storage::directories('public/mangas/');
         $AllMangasNames = [];
-
-        foreach ($allFiles as $manga) {
+        foreach ($directories as $manga) {
             $newManga = explode("/", $manga);
             if (!in_array($newManga[2], $AllMangasNames, true)) {
                 $AllMangasNames[] = $newManga[2];
             }     
         }        
+        
         $isMangaInsertInDatabase = [];
         foreach ($AllMangasNames as $newManga) {
             $manga = Mangas::firstOrCreate(
                 ['manga_name' => $newManga],
-                ['manga_cover' => $newManga .".jpg",
+                ['manga_cover' => $newManga . ".jpg",
                 'manga_directory' => "/". $newManga,
+                'manga_banner' => '/banner_default.jpg',
                 'uploader_id' => "1",
                 'created_at' => new \datetime()],
             );

@@ -5,7 +5,7 @@
     <!-- wrap -->
     {{-- <main class="main"> --}}
         <div class="banner">
-            <img src="<?= asset('storage/mangas/') ?>{{$mangaDetails->manga_directory . "/" . $mangaDetails->manga_banner }}" alt="">
+            <img src="<?= asset('storage/mangas/') ?>{{$mangaDetails->manga_banner }}" alt="">
         </div>
         <div class="details">
             <div class="details-main-cover">

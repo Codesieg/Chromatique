@@ -80,7 +80,7 @@ class AdminTomesController extends Controller
      */
     public function add(Request $request)
     {
-        // Récupération de l'uploade de la cover
+        // Récupération de l'upload de la cover
         $this->validate($request, [
                 'tomePath' => 'required',
                 'tomePath.*' => 'mimes:jpg,png'
@@ -165,10 +165,7 @@ class AdminTomesController extends Controller
         $AllNewTomes = [];
         foreach ($directories as $tome) {
             $newTome = explode("/", $tome);
-            // dd($newTome);
-            if (in_array($tome[3], $AllNewTomes, true)) {
-                echo "Tome déja présent </br>";
-            } else {
+            if (!in_array($tome[3], $AllNewTomes, true)) {
                 $table = $newTome[3]; 
                 $AllNewTomes[$table]["number"] = $newTome[3];                
             }     
@@ -181,10 +178,8 @@ class AdminTomesController extends Controller
             }
         }
         
-        
         foreach ($AllNewTomes as $newTome) { 
                 $tomeNumber = explode("_", $newTome['number']);
-                // dd($tomeNumber[1]);
                 $tome = Tomes::firstOrCreate(
                     ['manga_id'=> $lastMangaId, 'tome_number' => $tomeNumber[1]],
                     ['tome_number' => $tomeNumber[1],
@@ -197,7 +192,6 @@ class AdminTomesController extends Controller
         
                 // Boucle sur les pages
                 $allPages = Storage::disk('local')->allFiles('public/mangas/'. $newManga . '/' . $newTome['number']);
-                // dd($allPages);
                 foreach ($allPages as $page) {
                     $pagePath = explode("/", $page);
                     array_splice($pagePath, 0 , 2);
