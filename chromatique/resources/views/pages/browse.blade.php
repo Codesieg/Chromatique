@@ -11,7 +11,7 @@
             </div>
             @foreach ($listPages as $page)
                 <div class="page">
-                    <img class="scale" src="<?= asset('assets/mangas/')?>{{$page->page_file}}" alt="">
+                    <img class="scale" src="<?= asset('storage/mangas/')?>{{ '/' . $page->page_file}}" alt="">
                 </div>
                 </a>
             @endforeach     

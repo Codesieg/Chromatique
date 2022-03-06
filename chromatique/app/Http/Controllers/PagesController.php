@@ -30,7 +30,7 @@ class PagesController extends Controller
      *
      * @return App\Models\Tomes
      */
-    public function read($id)
+    public static function read($id)
     {
         $listPages = DB::table('pages')
             ->select('pages.*',)

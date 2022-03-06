@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminMangasController extends Controller
 {
@@ -55,9 +56,9 @@ class AdminMangasController extends Controller
      *
      * @return void
      */
-    // TODO: Venir récupérer l'uploader de session
     public function form()
     {
+        // il faut récupérer le nom d'utilisateur de la session en cours plutôt que de lister touts les uploaders
         $uploaderList = User::All();
         // dd($uploaderList);
 
@@ -67,15 +68,16 @@ class AdminMangasController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Add a new manga.
      *
      * @return \Illuminate\Http\Response
      */
 
-    //  Venir récup les dossier sur un emplacemetn quelquonque et enregistrer cette emplacement en BDD
-    // ne pas recréer des dossiers et des fichiers pour le contenu sinon tout sera doublé.
+    // Venir récup les dossier sur un emplacement quelconque et enregistrer cet emplacement en BDD
+    // controler de ne pas créer des dossiers et des fichiers en  double.
     // 1 - Je viens dans un dossier précis stocker tous les managas éxistant, Avoir une conf pour indiquer où est le dossier des mangas
-    // 2 - Je cré une boucle qui enregistre l'url de chaque dossier / sous dossier et fichier
+    // 2 - Je cré une boucle qui enregistre en bdd l'emplacement l'url de chaque dossier / sous dossier et fichier
+    
     public function add(Request $request)
     {
         // On récupére le nom du manga et on supprime les espaces vide en debut et fin
@@ -114,7 +116,7 @@ class AdminMangasController extends Controller
             $mangaPath = $mangaDirectory .'/'. $coverName . '.' . $cover->extension();
             
             // Chemin vers le dossier public
-            $publicPath = public_path() . '/assets/mangas/'. $mangaDirectory;
+            $publicPath = public_path('assets/mangas'). $mangaDirectory;
             $cover->move($publicPath, $mangaPath);  
         }
 
@@ -132,6 +134,49 @@ class AdminMangasController extends Controller
 
         // return redirect()->route('profile');
         return back()->with('success', 'Le manga ' . $mangaName . ' à était ajouté !', 200);
+    }
+
+    public function insert(Request $request) {
+        //  Je récupére tous les mangas dans le dossier mangas
+
+        // TODO: $mangaName = $request->input(trim('pathManga')); Parcourir un dossier du serveur pour ajout
+
+        $allFiles = Storage::disk('local')->allFiles('public/mangas/');
+        $AllMangasNames = [];
+
+        foreach ($allFiles as $manga) {
+            $newManga = explode("/", $manga);
+            if (!in_array($newManga[2], $AllMangasNames, true)) {
+                $AllMangasNames[] = $newManga[2];
+            }     
+        }        
+        $isMangaInsertInDatabase = [];
+        foreach ($AllMangasNames as $newManga) {
+            $manga = Mangas::firstOrCreate(
+                ['manga_name' => $newManga],
+                ['manga_cover' => $newManga .".jpg",
+                'manga_directory' => "/". $newManga,
+                'uploader_id' => "1",
+                'created_at' => new \datetime()],
+            );
+
+            $lastMangaId = $manga->id;
+
+            AdminTomesController::insert($newManga, $lastMangaId);
+            
+            if ($manga->exits == false) {
+                $isMangaInsertInDatabase[] = $newManga;
+            }
+        }
+
+        if ($isMangaInsertInDatabase != null) {
+            // return redirect()->route('profile');
+            return view('admin/form', [
+                'newManga' => $isMangaInsertInDatabase
+                ])->with('success', 'Les mangas ont était ajouté !', 200);
+        } else {
+            return back()->with('success', 'Les mangas sont déjà présent !', 200);
+        }
     }
 
     /**
