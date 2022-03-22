@@ -45,7 +45,7 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
-                                <li><a>Mangas<span class="arrow_carrot-down"></span></a>
+                                <li><a><span class="arrow_carrot-down"></span> Mangas </a>
                                     <ul class="dropdown">
                                         <li><a href="categories.html">Naruto</a></li>
                                         <li><a href="anime-details.html">Bleach</a></li>
@@ -58,7 +58,7 @@
                                 <li><a href="./blog.html">Actus</a></li>
                                 {{-- <li><a href="#">Contacts</a></li> --}}
                                 {{-- <a href="#" class="search-switch"><span class="icon_search"></span></a> --}}
-                                <li><a>Mon Espace<span class="arrow_carrot-down"></span></a>
+                                <li><a></a><span class="icon_profile"></span>Mon profil </a>
                                     <ul class="dropdown">
                                         @if (!Auth::check())
                                         <li><a href="{{route('login')}}">Connexion</a></li>
