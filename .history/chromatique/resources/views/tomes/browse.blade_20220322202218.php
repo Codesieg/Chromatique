@@ -62,7 +62,7 @@
                                             <li><span>Votes :</span> 8.5 / 161 times</li>
                                             <li><span>Vues :</span> 131,541</li>
                                             <li><span>Uploadeur :</span> {{ $uploader->name }}</li>
-                                            <li><span>Colorisé par :</span> Sardan</li>
+                                            <li><span>Colorisé par :</span> {{ $uploader->name }}</li>
                                         </ul>
                                     </div>
                                 </div>

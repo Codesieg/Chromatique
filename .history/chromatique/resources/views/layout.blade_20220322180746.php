@@ -42,40 +42,48 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="header__nav">
+                    {{dump(Auth::check())}}
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
-                                <li><span class="arrow_carrot-down"></span> Mangas </a>
+                                <li> <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="categories.html">Naruto</a></li>
-                                        <li><a href="anime-details.html">Bleach</a></li>
-                                        <li><a href="anime-watching.html">Alice in Borderland</a></li>
-                                        <li><a href="blog-details.html">One Piece</a></li>
-                                        <li><a href="signup.html">Death Note</a></li>
-                                        <li><a href="login.html">Dragon Ball</a></li>
+                                        <li><a href="categories.html">Categories</a></li>
+                                        <li><a href="anime-details.html">Anime Details</a></li>
+                                        <li><a href="anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                        <li><a href="signup.html">Sign Up</a></li>
+                                        <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Actus</a></li>
                                 <li><a href="#">Contacts</a></li>
-                                <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                                <li><span class="icon_profile"></span>
-                                    <ul class="dropdown">
-                                        @if (!Auth::check())
-                                        <li><a href="{{route('login')}}">Connexion</a></li>
-                                            <li><a href="{{route('register')}}">Inscription</a></li>
-                                        @else
-                                        <li><a href="">Deconnexion</a></li>
-                                        @endif
-                                        
-                                        @if (Auth::check())
-                                        <li><a href="{{route('admin_browse_mangas')}}">Ajouter Manga</a></li>
-                                        <li><a href="{{route('admin_browse_tomes')}}">Ajouter Tome</a></li>
-                                        <li><a href="">Gestion des utilisateur</a></li>
-                                        @endif
-                                    </ul>
-                                </li>
                             </ul>
                         </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="header__right">
+                        <ul> 
+
+                            <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                            <li><span class="icon_profile"></span>
+                            <ul class="dropdown">
+                            @if (!Auth::check())
+                            <li><a href="{{route('login')}}">Connexion</a></li>
+                                <li><a href="{{route('register')}}">Inscription</a></li>
+                            @else
+                            <li><a href="">Deconnexion</a></li>
+                            @endif
+                            
+                            @if (Auth::check())
+                            <li><a href="{{route('admin_browse_mangas')}}">Ajouter Manga</a></li>
+                            <li><a href="{{route('admin_browse_tomes')}}">Ajouter Tome</a></li>
+                            <li><a href="">Gestion des utilisateur</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                </ul>
                     </div>
                 </div>
             </div>
@@ -96,13 +104,4 @@
 
 @yield('footer')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-<!-- Js Plugins -->
-<script src="<?= asset('assets/js/jquery-3.3.1.min.js') ?>"></script>
-<script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
-<script src="<?= asset('assets/js/player.js') ?>"></script>
-<script src="<?= asset('assets/js/jquery.nice-select.min.js') ?>"></script>
-<script src="<?= asset('assets/js/mixitup.min.js') ?>"></script>
-<script src="<?= asset('assets/js/jquery.slicknav.js') ?>"></script>
-<script src="<?= asset('assets/js/owl.carousel.min.js') ?>"></script>
-<script src="<?= asset('assets/js/main.js') ?>"></script>
 </html>

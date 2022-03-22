@@ -51,7 +51,7 @@
                                         <ul>
                                             <li><span>Type :</span>Shomen</li>
                                             <li><span>Autheur :</span>{{ $mangaDetails->manga_author }}</li>
-                                            <li><span>Date d'ajout :</span> {{ $mangaDetails->updated_at }}</li>
+                                            <li><span>Date de publication :</span> {{ $mangaDetails->updated_at }}</li>
                                             <li><span>Status :</span> En cours</li>
                                             <li><span>Genre :</span> Action, Adventure, Fantasy, Magic</li>
                                         </ul>
@@ -59,18 +59,16 @@
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
                                             <li><span>Scores :</span> 7.31 / 1,515</li>
-                                            <li><span>Votes :</span> 8.5 / 161 times</li>
-                                            <li><span>Vues :</span> 131,541</li>
-                                            <li><span>Uploadeur :</span> {{ $uploader->name }}</li>
-                                            <li><span>Colorisé par :</span> Sardan</li>
+                                            <li><span>Rating :</span> 8.5 / 161 times</li>
+                                            <li><span>Views:</span> 131,541</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Suivre</a>
-                                {{-- <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a> --}}
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
+                                    class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -84,34 +82,37 @@
                             </div>
                             @foreach ($listTomes as $tome)
                                 <div class="anime__review__item">
+                                    <div class="anime__review__item__pic">
+                                        <img src="img/anime/review-1.jpg" alt="">
+                                    </div>
                                     <div class="anime__review__item__text">
-                                        <a href="/tome/page/{{ $tome->id }}">Tome {{ $tome->tome_number }}</a>
+                                        {{-- <h6>Chris Curry - <span>1 Hour ago</span></h6> --}}
+                                        <p>Tome {{ $tome->tome_number }}</p>
                                     </div>
                                 </div>
                             @endforeach 
-                        </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
-                                <h5>Vous aimeriez...</h5>
+                                <h5>you might like...</h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="<?= asset('assets/img/sidebar/tv-2.jpg ') ?>">
+                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Boruto: Naruto next generations</a></h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="<?= asset('assets/img/sidebar/tv-2.jpg') ?>">
+                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="<?= asset('assets/img/sidebar/tv-3.jpg') ?>">
+                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="<?= asset('assets/img/sidebar/tv-4.jpg') ?>">
+                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>

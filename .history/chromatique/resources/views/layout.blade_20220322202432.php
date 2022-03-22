@@ -42,6 +42,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="header__nav">
+                    {{dump(Auth::check())}}
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>

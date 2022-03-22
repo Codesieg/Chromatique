@@ -60,15 +60,13 @@
                                         <ul>
                                             <li><span>Scores :</span> 7.31 / 1,515</li>
                                             <li><span>Votes :</span> 8.5 / 161 times</li>
-                                            <li><span>Vues :</span> 131,541</li>
-                                            <li><span>Uploadeur :</span> {{ $uploader->name }}</li>
-                                            <li><span>Colorisé par :</span> Sardan</li>
+                                            <li><span>Vues:</span> 131,541</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Suivre</a>
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
                                 {{-- <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                     class="fa fa-angle-right"></i></a> --}}
                                 </div>
@@ -94,7 +92,7 @@
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
-                                <h5>Vous aimeriez...</h5>
+                                <h5>you might like...</h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg" data-setbg="<?= asset('assets/img/sidebar/tv-2.jpg ') ?>">
                                 <div class="ep">18 / ?</div>

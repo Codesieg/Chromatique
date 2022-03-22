@@ -13,7 +13,31 @@
                                 <div class="label">Adventure</div>
                                 <h2>Fate / Stay Night: Unlimited Blade Works</h2>
                                 <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Voir</span><i class="fa fa-angle-right"></i></a>
+                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/hero-1.jpg') ?>">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <div class="label">Adventure</div>
+                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                                <p>After 30 days of travel across the world...</p>
+                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/hero-1.jpg') ?>">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <div class="label">Adventure</div>
+                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                                <p>After 30 days of travel across the world...</p>
+                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -32,7 +56,7 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Nouveautés</h4>
+                                    <h4>Nouveauté</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -145,13 +169,13 @@
                     <div class="product__sidebar">
                         <div class="product__sidebar__view">
                             <div class="section-title">
-                                <h5>Top Vues</h5>
+                                <h5>Top Views</h5>
                             </div>
                             <ul class="filter__controls">
-                                <li class="active" data-filter="*">Jour</li>
-                                <li data-filter=".week">Semaine</li>
-                                <li data-filter=".month">Mois</li>
-                                <li data-filter=".years">Année</li>
+                                <li class="active" data-filter="*">Day</li>
+                                <li data-filter=".week">Week</li>
+                                <li data-filter=".month">Month</li>
+                                <li data-filter=".years">Years</li>
                             </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
@@ -186,7 +210,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="product__sidebar__comment">
+    <div class="product__sidebar__comment">
         <div class="section-title">
             <h5>New Comment</h5>
         </div>
@@ -203,7 +227,7 @@
                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
 </div>
 </div>
@@ -224,5 +248,13 @@
 </div>
 <!-- Search model end -->
 
-
+<!-- Js Plugins -->
+<script src="<?= asset('assets/js/jquery-3.3.1.min.js') ?>"></script>
+<script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
+<script src="<?= asset('assets/js/player.js') ?>"></script>
+<script src="<?= asset('assets/js/jquery.nice-select.min.js') ?>"></script>
+<script src="<?= asset('assets/js/mixitup.min.js') ?>"></script>
+<script src="<?= asset('assets/js/jquery.slicknav.js') ?>"></script>
+<script src="<?= asset('assets/js/owl.carousel.min.js') ?>"></script>
+<script src="<?= asset('assets/js/main.js') ?>"></script>
 @endsection
