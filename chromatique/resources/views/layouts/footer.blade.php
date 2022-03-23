@@ -1,7 +1,3 @@
-@extends ('layout')
-
-@section('footer')
-
 <!-- Footer Section Begin -->
 <footer class="footer">
     <div class="page-up">
@@ -17,10 +13,9 @@
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="./index.html">Homepage</a></li>
-                        <li><a href="./categories.html">Categories</a></li>
-                        <li><a href="./blog.html">Our Blog</a></li>
-                        <li><a href="#">Contacts</a></li>
+                        <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
+                        <li><a href="{{route('browse_mangas')}}">Mangas</a></li>
+                        <li><a href="">Actus</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,5 +30,3 @@
       </div>
   </footer>
   <!-- Footer Section End -->
-
-  @endsection

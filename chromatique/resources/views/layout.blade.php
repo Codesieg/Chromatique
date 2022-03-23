@@ -25,9 +25,9 @@
     <link rel="stylesheet" href=<?= asset('assets/css/style.css') ?> type="text/css">
 </head>
 <!-- Page Preloder -->
-<!-- <div id="preloder">
+<div id="preloder">
     <div class="loader"></div>
-</div> -->
+</div>
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -35,6 +35,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
+                       
                         <a href="{{route('browse_mangas')}}">
                             <img src="img/logo.png" alt="">
                         </a>
@@ -55,7 +56,7 @@
                                         <li><a href="login.html">Dragon Ball</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./blog.html">Actus</a></li>
+                                <li><a href="">Actus</a></li>
                                 {{-- <li><a href="#">Contacts</a></li> --}}
                                 {{-- <a href="#" class="search-switch"><span class="icon_search"></span></a> --}}
                                 <li><a>Mon Espace<span class="arrow_carrot-down"></span></a>
@@ -64,10 +65,19 @@
                                         <li><a href="{{route('login')}}">Connexion</a></li>
                                             <li><a href="{{route('register')}}">Inscription</a></li>
                                         @else
-                                        <li><a href="">Deconnexion</a></li>
-                                        @endif
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                {{ __('Deconnexion') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                            @endif
+                                        </li>
                                         
-                                        @if (Auth::check())
+                                        @if (Auth::user()->role == 'admin')
                                         <li><a href="{{route('admin_browse_mangas')}}">Ajouter Manga</a></li>
                                         <li><a href="{{route('admin_browse_tomes')}}">Ajouter Tome</a></li>
                                         <li><a href="">Gestion des utilisateur</a></li>
@@ -93,8 +103,9 @@
 
 
 </body>
+@include('layouts/footer')
 
-@yield('footer')
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <!-- Js Plugins -->
 <script src="<?= asset('assets/js/jquery-3.3.1.min.js') ?>"></script>
