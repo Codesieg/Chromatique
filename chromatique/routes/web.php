@@ -1,8 +1,8 @@
 <?php
 
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
@@ -127,5 +127,5 @@ Route::get(
 
 // ---------------route d'authentification------------
 
-Auth::routes();
+// Auth::routes();
 
