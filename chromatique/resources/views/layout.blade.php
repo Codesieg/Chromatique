@@ -77,7 +77,7 @@
                                             @endif
                                         </li>
                                         
-                                        @if (Auth::user()->role == 'admin')
+                                        @if (Auth::user())
                                         <li><a href="{{route('admin_browse_mangas')}}">Ajouter Manga</a></li>
                                         <li><a href="{{route('admin_browse_tomes')}}">Ajouter Tome</a></li>
                                         <li><a href="">Gestion des utilisateur</a></li>
