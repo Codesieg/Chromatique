@@ -1,7 +1,5 @@
 <?php
 
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
@@ -9,8 +7,6 @@ use App\Http\Controllers\MangasController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,5 +123,12 @@ Route::get(
 
 // ---------------route d'authentification------------
 
-Auth::routes();
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
