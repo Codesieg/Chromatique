@@ -41,38 +41,26 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Browse new manga here --}}
-                        {{-- @foreach ($listMangas as $manga)
-                        <a href="tome/browse/{{$manga->id}}">
-                            <div class="card">
-                                <img class="cover" src="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}" alt="">
-                                <div class="main-text">
-                                    <h1 class="white title">{{$manga->manga_name}}</h1>
-                                    <p class="synopsis"><?= substr($manga->manga_synopsis, 0, 100) ?>...</p>
-                                    <button type="button" class="btn btn-primary btn-sm mt-4 end-0"> Lire le Manga</button>
-                                </div>
-                            </div>
-                        </a> --}}
+                        <!-- Browse new manga here  -->
                         <div class="row">
                             @foreach ($listMangas as $manga)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}">
-                                            <div class="ep">18 / 18</div>
-                                            {{-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --}}
-                                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <ul>
-                                                <li>Active</li>
-                                                <li>Movie</li>
-                                            </ul>
-                                            <h5><a href="tome/browse/{{$manga->id}}">{{$manga->manga_name}}</a></h5>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                            <div class="product__item__pic set-bg" data-setbg="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}">
+                                                <div class="ep">18 / 18</div>
+                                                {{-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --}}
+                                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                            </div>
+                                            <div class="product__item__text">
+                                                <ul>
+                                                    <li>Active</li>
+                                                    <li>Movie</li>
+                                                </ul>
+                                                <h5><a href="tome/browse/{{$manga->id}}">{{$manga->manga_name}}</a></h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                @endforeach     
+                            @endforeach     
                         </div>
                         {{-- stop brows new manga  --}}
                     </div>
