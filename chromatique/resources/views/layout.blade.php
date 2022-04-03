@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="french">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="description" content="Chromatique team">
+    <meta name="keywords" content="Manga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chromatique</title>
@@ -48,12 +48,12 @@
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
                                 <li><a>Mangas<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="categories.html">Naruto</a></li>
-                                        <li><a href="anime-details.html">Bleach</a></li>
-                                        <li><a href="anime-watching.html">Alice in Borderland</a></li>
-                                        <li><a href="blog-details.html">One Piece</a></li>
-                                        <li><a href="signup.html">Death Note</a></li>
-                                        <li><a href="login.html">Dragon Ball</a></li>
+                                        <li><a href="">Naruto</a></li>
+                                        <li><a href="">Bleach</a></li>
+                                        <li><a href="">Alice in Borderland</a></li>
+                                        <li><a href="">One Piece</a></li>
+                                        <li><a href="">Death Note</a></li>
+                                        <li><a href="">Dragon Ball</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="">Actus</a></li>
