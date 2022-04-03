@@ -6,13 +6,13 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/hero-1.jpg') ?>">
+                <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/one_piece.png') ?>">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
+                                <h2>One Piece</h2>
+                                <p>Monkey D. Luffy rêve de retrouver ce trésor légendaire et de devenir le nouveau "Roi des Pirates"...</p>
                                 <a href="#"><span>Voir</span><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
