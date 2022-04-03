@@ -48,7 +48,7 @@ class PagesController extends Controller
     }
 
     /**
-     * DELETE a  manga.
+     * DELETE a  page.
      *
      * @return App\Models\Pages
      */

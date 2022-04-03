@@ -41,18 +41,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Browse new manga here --}}
-                        {{-- @foreach ($listMangas as $manga)
-                        <a href="tome/browse/{{$manga->id}}">
-                            <div class="card">
-                                <img class="cover" src="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}" alt="">
-                                <div class="main-text">
-                                    <h1 class="white title">{{$manga->manga_name}}</h1>
-                                    <p class="synopsis"><?= substr($manga->manga_synopsis, 0, 100) ?>...</p>
-                                    <button type="button" class="btn btn-primary btn-sm mt-4 end-0"> Lire le Manga</button>
-                                </div>
-                            </div>
-                        </a> --}}
                         <div class="row">
                             @foreach ($listMangas as $manga)
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -65,7 +53,7 @@
                                         <div class="product__item__text">
                                             <ul>
                                                 <li>Active</li>
-                                                <li>Movie</li>
+                                                <li>Shonen</li>
                                             </ul>
                                             <h5><a href="tome/browse/{{$manga->id}}">{{$manga->manga_name}}</a></h5>
                                         </div>
@@ -100,7 +88,7 @@
                                     <div class="product__item__text">
                                         <ul>
                                             <li>Active</li>
-                                            <li>Movie</li>
+                                            <li>Shonen</li>
                                         </ul>
                                         <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
                                     </div>
@@ -132,7 +120,7 @@
                                     <div class="product__item__text">
                                         <ul>
                                             <li>Active</li>
-                                            <li>Movie</li>
+                                            <li>Shonen</li>
                                         </ul>
                                         <h5><a href="#">Great Teacher Onizuka</a></h5>
                                     </div>
@@ -197,7 +185,7 @@
             <div class="product__sidebar__comment__item__text">
                 <ul>
                     <li>Active</li>
-                    <li>Movie</li>
+                    <li>Shonen</li>
                 </ul>
                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>

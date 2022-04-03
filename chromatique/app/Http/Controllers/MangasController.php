@@ -14,10 +14,10 @@ class MangasController extends Controller
      */
     public function browse()
     {
-        $listManga = Mangas::all()->sortBy('manga_name');
-
+        // $listManga = Mangas::select('manga_name')->get();
+        
         return view('mangas/home', [
-            'listMangas' => $listManga
+            // 'listMangas' => $listManga
         ]);
     }
     
