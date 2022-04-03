@@ -19,23 +19,23 @@ const zoom = {
     //TODO:Ajouter un bouton pour revenir au 100% du zoom
     // fonction pour le zoom in
     zoomIn: function() {
-        // on récupére l'élément .page pour lui définir une nouvelle taill
-        const pageElementsList = document.querySelectorAll(".page");
-        // On cré une boucle afin de récupérer tout les pages d'un tome
+        // on récupére l'élément .page pour lui définir une nouvelle taille
+        const pageElementsList = document.querySelectorAll(".scale");
+        // On crée une boucle afin de récupérer toutes les pages d'un tome
         for (let pageElement of pageElementsList) {
             // On récupére la taille actuelle de la page
             const width = pageElement.offsetWidth;
-            // On lui ajoute 20px à chaque clique
-            pageElement.style.width = (width + 40) + "px";
+            // On lui ajoute xxpx à chaque clique
+            pageElement.style.width = (width + 200) + "px";
         }
 
     },
 
     zoomOut: function() {
-        const pageElementsList = document.querySelectorAll(".page");
+        const pageElementsList = document.querySelectorAll(".scale");
         for (let pageElement of pageElementsList) {
             const width = pageElement.offsetWidth;
-            pageElement.style.width = (width - 20) + "px";
+            pageElement.style.width = (width - 200) + "px";
         }
     },
 
