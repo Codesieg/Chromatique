@@ -2,10 +2,11 @@
 
 @section('contenu')
 
-    <!-- Hero Section Begin -->
+    <!-- Slider Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
+
                 <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/one_piece.png') ?>">
                     <div class="row">
                         <div class="col-lg-6">
@@ -18,12 +19,13 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Slider Section End -->
 
-    <!-- Product Section Begin -->
+    <!-- New manga Section Begin -->
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -43,8 +45,8 @@
                         </div>
                         <div class="row">
                             @foreach ($listMangas as $manga)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}">
                                             <div class="ep">18 / 18</div>
                                             {{-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --}}
@@ -55,12 +57,11 @@
                                                 <li>Active</li>
                                                 <li>Shonen</li>
                                             </ul>
-                                            <h5><a href="tome/browse/{{$manga->id}}">{{$manga->manga_name}}</a></h5>
+                                            <h5><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                @endforeach     
+                            @endforeach     
                         </div>
                         {{-- stop brows new manga  --}}
                     </div>
@@ -197,7 +198,7 @@
 </div>
 </div>
 </section>
-<!-- Product Section End -->
+<!-- New Manga Section End -->
 
 
 
