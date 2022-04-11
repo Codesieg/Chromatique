@@ -47,6 +47,7 @@
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
                                 <li><a>Mangas<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
+
                                         @foreach($listMangas as $manga)
                                             <li><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></li>
                                         @endforeach

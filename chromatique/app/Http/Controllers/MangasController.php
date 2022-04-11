@@ -14,11 +14,15 @@ class MangasController extends Controller
      */
     public function home()
     {
-        $listManga = Mangas::select('manga_name')->get();
-        // TODO Intégr une donnée indiquant que le manga est nouveau si date inferieur à 1 semaine par rapport à aujourd'hui on affiche les données.
+        $listManga = Mangas::all()->sortBy('manga_name');
+        
+        // $listMangaName = [];
+        // foreach ($listManga as $manga) {
+        //     $listMangaName[] = str_replace(array("_", "'", "-"), ' ', $manga->manga_name);
+        // }
         
         return view('mangas/home', [
-            // 'listMangas' => $listManga
+            'listMangas' => $listManga
         ]);
     }
     /**
