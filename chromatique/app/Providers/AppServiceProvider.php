@@ -29,7 +29,14 @@ class AppServiceProvider extends ServiceProvider
     {        
         Schema::defaultStringLength(191);
         View::composer('*', function ($view) {
-            $view->with('listMangas', Mangas::all()->sortBy('manga_name'));
+
+        $listManga = Mangas::select('id', 'manga_name')->get();
+        $listMangaName = [];
+        foreach ($listManga as $key => $manga) {
+            $listMangaName[$key]["name"] = str_replace(array("_", "'", "-"), ' ', $manga->manga_name);
+            $listMangaName[$key]["id"] = $manga->id;
+        }
+            $view->with('listMangasName', $listMangaName);
         });
     }
 }
