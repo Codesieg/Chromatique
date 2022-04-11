@@ -2,10 +2,11 @@
 
 @section('contenu')
 
-    <!-- Hero Section Begin -->
+    <!-- Slider Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
+
                 <div class="hero__items set-bg" data-setbg="<?= asset('assets/img/hero/one_piece.png') ?>">
                     <div class="row">
                         <div class="col-lg-6">
@@ -18,12 +19,13 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Slider Section End -->
 
-    <!-- Product Section Begin -->
+    <!-- New manga Section Begin -->
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -41,22 +43,10 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Browse new manga here --}}
-                        {{-- @foreach ($listMangas as $manga)
-                        <a href="tome/browse/{{$manga->id}}">
-                            <div class="card">
-                                <img class="cover" src="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}" alt="">
-                                <div class="main-text">
-                                    <h1 class="white title">{{$manga->manga_name}}</h1>
-                                    <p class="synopsis"><?= substr($manga->manga_synopsis, 0, 100) ?>...</p>
-                                    <button type="button" class="btn btn-primary btn-sm mt-4 end-0"> Lire le Manga</button>
-                                </div>
-                            </div>
-                        </a> --}}
                         <div class="row">
                             @foreach ($listMangas as $manga)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}">
                                             <div class="ep">18 / 18</div>
                                             {{-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --}}
@@ -65,14 +55,13 @@
                                         <div class="product__item__text">
                                             <ul>
                                                 <li>Active</li>
-                                                <li>Movie</li>
+                                                <li>Shonen</li>
                                             </ul>
-                                            <h5><a href="tome/browse/{{$manga->id}}">{{$manga->manga_name}}</a></h5>
+                                            <h5><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                @endforeach     
+                            @endforeach     
                         </div>
                         {{-- stop brows new manga  --}}
                     </div>
@@ -100,7 +89,7 @@
                                     <div class="product__item__text">
                                         <ul>
                                             <li>Active</li>
-                                            <li>Movie</li>
+                                            <li>Shonen</li>
                                         </ul>
                                         <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
                                     </div>
@@ -132,7 +121,7 @@
                                     <div class="product__item__text">
                                         <ul>
                                             <li>Active</li>
-                                            <li>Movie</li>
+                                            <li>Shonen</li>
                                         </ul>
                                         <h5><a href="#">Great Teacher Onizuka</a></h5>
                                     </div>
@@ -197,7 +186,7 @@
             <div class="product__sidebar__comment__item__text">
                 <ul>
                     <li>Active</li>
-                    <li>Movie</li>
+                    <li>Shonen</li>
                 </ul>
                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
@@ -209,7 +198,7 @@
 </div>
 </div>
 </section>
-<!-- Product Section End -->
+<!-- New Manga Section End -->
 
 
 

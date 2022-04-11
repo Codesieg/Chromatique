@@ -13,7 +13,6 @@ class MainController extends Controller
 
         $mangas = new Mangas();
         $listMangas = $mangas->getManga();
-        // dd($listMangas);
 
         return view('home', compact('listMangas'));
     }

@@ -8,15 +8,30 @@ use App\Models\Mangas;
 class MangasController extends Controller
 {
     /**
+     * Show new mangas in database.
+     *
+     * @return App\Models\Mangas
+     */
+    public function home()
+    {
+        $listManga = Mangas::select('manga_name')->get();
+        // TODO Intégr une donnée indiquant que le manga est nouveau si date inferieur à 1 semaine par rapport à aujourd'hui on affiche les données.
+        
+        return view('mangas/home', [
+            // 'listMangas' => $listManga
+        ]);
+    }
+    /**
      * Show all the mangas in database.
      *
      * @return App\Models\Mangas
      */
     public function browse()
     {
-        $listManga = Mangas::all()->sortBy('manga_name');
-
-        return view('mangas/home', [
+        $listManga = Mangas::select('manga_name')->get();
+       
+        
+        return view('mangas/browse', [
             'listMangas' => $listManga
         ]);
     }

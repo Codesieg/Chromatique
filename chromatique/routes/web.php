@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
-use App\Http\Controllers\Auth\LoginController;
+// use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
 /*
@@ -18,11 +18,10 @@ use App\Http\Controllers\Admin\AdminMangasController;
 |
 */
 //-------------- Route front ----------------
-// Route::get('/', [MangasController::class,'browse'])->name('browse_mangas');
 
 Route::get(
     '/',
-    [MangasController::class, 'browse']
+    [MangasController::class, 'home']
 )->name('browse_mangas');
 
 Route::get(
@@ -35,10 +34,11 @@ Route::get(
     [PagesController::class,'read']
 )->name('browse_pages');
 
-// Route::post(
-//     '/logout', 
-//     [LoginController::class,'logout']
-// )->name('user_logout');
+Route::get(
+    '/mangas', 
+    [MangasController::class,'browse']
+)->name('browse_all_mangas');
+
 
 //-------------- Route back-office manga ----------------
 

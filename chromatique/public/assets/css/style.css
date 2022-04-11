@@ -376,7 +376,7 @@ ol {
 	position: absolute;
 	left: 0;
 	top: 82px;
-	width: 150px;
+	width: auto;
 	background: #ffffff;
 	text-align: left;
 	padding: 5px 0;
@@ -438,7 +438,7 @@ ol {
 }
 
 /*---------------------
-  Hero
+Hero
 -----------------------*/
 
 .hero {
@@ -449,6 +449,7 @@ ol {
 	padding: 250px 0 42px 50px;
 	border-radius: 5px;
 }
+
 
 .hero__text {
 	position: relative;
@@ -2387,4 +2388,21 @@ ol {
     transition: opacity 5s;
 }
 
+/* Bouton d'actions */
+
+.btn-trash {
+	background-color: red;
+	width: 32px;
+	height: 31px;
+	border-radius: 5px;
+	border: none;
+}
+
+.btn-actions {
+	width: 50px;
+}
+
+.btn-orange {
+	background-color: #E53637;
+}
 

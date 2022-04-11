@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Users;
 use App\Models\Mangas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+
+
 
 class AdminMangasController extends Controller
 {
@@ -22,7 +23,7 @@ class AdminMangasController extends Controller
         $listManga = Mangas::all()->sortBy('manga_name');
 
         return view('admin/browse', [
-            'listMangas' => $listManga
+            'listMangas' => $listManga,
         ]);
     }
     

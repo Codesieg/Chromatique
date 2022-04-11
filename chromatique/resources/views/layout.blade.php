@@ -35,7 +35,6 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                       
                         <a href="{{route('browse_mangas')}}">
                             <img src="img/logo.png" alt="">
                         </a>
@@ -48,12 +47,9 @@
                                 <li class="active"><a href="{{route('browse_mangas')}}">Accueil</a></li>
                                 <li><a>Mangas<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="">Naruto</a></li>
-                                        <li><a href="">Bleach</a></li>
-                                        <li><a href="">Alice in Borderland</a></li>
-                                        <li><a href="">One Piece</a></li>
-                                        <li><a href="">Death Note</a></li>
-                                        <li><a href="">Dragon Ball</a></li>
+                                        @foreach($listMangas as $manga)
+                                            <li><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="">Actus</a></li>
@@ -78,8 +74,8 @@
                                         </li>
                                         
                                         @if (Auth::check())
-                                        <li><a href="{{route('admin_browse_mangas')}}">Ajouter Manga</a></li>
-                                        <li><a href="{{route('admin_browse_tomes')}}">Ajouter Tome</a></li>
+                                        <li><a href="{{route('admin_browse_mangas')}}">Gestion Manga</a></li>
+                                        <li><a href="{{route('admin_browse_tomes')}}">Gestion Tome</a></li>
                                         <li><a href="">Gestion des utilisateur</a></li>
                                         @endif
                                     </ul>
