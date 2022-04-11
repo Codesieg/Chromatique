@@ -8,11 +8,11 @@ use App\Models\Mangas;
 class MangasController extends Controller
 {
     /**
-     * Show all the mangas in database.
+     * Show new mangas in database.
      *
      * @return App\Models\Mangas
      */
-    public function browse()
+    public function home()
     {
         $listManga = Mangas::all()->sortBy('manga_name');
         
@@ -20,9 +20,22 @@ class MangasController extends Controller
         // foreach ($listManga as $manga) {
         //     $listMangaName[] = str_replace(array("_", "'", "-"), ' ', $manga->manga_name);
         // }
-
         
         return view('mangas/home', [
+            'listMangas' => $listManga
+        ]);
+    }
+    /**
+     * Show all the mangas in database.
+     *
+     * @return App\Models\Mangas
+     */
+    public function browse()
+    {
+        $listManga = Mangas::select('manga_name')->get();
+       
+        
+        return view('mangas/browse', [
             'listMangas' => $listManga
         ]);
     }

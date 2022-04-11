@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\AdminMangasController;
 
 Route::get(
     '/',
-    [MangasController::class, 'browse']
+    [MangasController::class, 'home']
 )->name('browse_mangas');
 
 Route::get(
@@ -33,6 +33,11 @@ Route::get(
     '/tome/page/{id}', 
     [PagesController::class,'read']
 )->name('browse_pages');
+
+Route::get(
+    '/mangas', 
+    [MangasController::class,'browse']
+)->name('browse_all_mangas');
 
 
 //-------------- Route back-office manga ----------------
