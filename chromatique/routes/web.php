@@ -78,7 +78,7 @@ Route::get(
 )->name('admin_form_edit_manga')->middleware('auth');
 
 // Permet d'enregistrer les modifications d'un manga
-Route::post(
+Route::patch(
     '/admin/manga/edit/{id}',
     [AdminMangasController::class, 'edit']
 )->name('admin_edit_manga')->middleware('auth');

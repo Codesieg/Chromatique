@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Mangas;
+// use Illuminate\Support\Facades\Auth;
+
+
 
 class MangasController extends Controller
 {
@@ -15,14 +17,10 @@ class MangasController extends Controller
     public function home()
     {
         $listManga = Mangas::all()->sortBy('manga_name');
-        
-        // $listMangaName = [];
-        // foreach ($listManga as $manga) {
-        //     $listMangaName[] = str_replace(array("_", "'", "-"), ' ', $manga->manga_name);
-        // }
-        
+        // $userIsUploader = Auth::user()->isUploader;
         return view('mangas/home', [
-            'listMangas' => $listManga
+            'listMangas' => $listManga,
+            // 'userIsUploader' => $userIsUploader,
         ]);
     }
     /**
@@ -33,8 +31,6 @@ class MangasController extends Controller
     public function browse()
     {
         $listManga = Mangas::select('manga_name')->get();
-       
-        
         return view('mangas/browse', [
             'listMangas' => $listManga
         ]);

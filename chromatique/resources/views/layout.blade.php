@@ -25,9 +25,9 @@
     <link rel="stylesheet" href=<?= asset('assets/css/style.css') ?> type="text/css">
 </head>
 <!-- Page Preloder -->
-<div id="preloder">
+{{-- <div id="preloder">
     <div class="loader"></div>
-</div>
+</div> --}}
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -48,8 +48,8 @@
                                 <li><a>Mangas<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
 
-                                        @foreach($listMangas as $manga)
-                                            <li><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></li>
+                                        @foreach($listMangasName as $manga)
+                                            <li><a href="{{route('browse_tomes', ['id' => $manga['id']]) }}">{{$manga['name']}}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -59,7 +59,7 @@
                                 <li><a>Mon Espace<span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         @if (!Auth::check())
-                                        <li><a href="{{route('login')}}">Connexion</a></li>
+                                            <li><a href="{{route('login')}}">Connexion</a></li>
                                             <li><a href="{{route('register')}}">Inscription</a></li>
                                         @else
                                         <li>
@@ -71,13 +71,17 @@
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
-                                            @endif
+                                        @endif
                                         </li>
                                         
                                         @if (Auth::check())
-                                        <li><a href="{{route('admin_browse_mangas')}}">Gestion Manga</a></li>
-                                        <li><a href="{{route('admin_browse_tomes')}}">Gestion Tome</a></li>
-                                        <li><a href="">Gestion des utilisateur</a></li>
+                                        <li><a href="">Mon profil</a></li>
+                                        <li><a href="">Mes mangas</a></li>
+                                            @if (Auth::user()->isUploader == 1)
+                                                <li><a href="{{route('admin_browse_mangas')}}">Gestion Manga</a></li>
+                                                <li><a href="{{route('admin_browse_tomes')}}">Gestion Tome</a></li>
+                                                <li><a href="">Gestion des utilisateur</a></li>
+                                            @endif
                                         @endif
                                     </ul>
                                 </li>

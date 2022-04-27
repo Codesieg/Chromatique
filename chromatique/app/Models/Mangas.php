@@ -11,8 +11,8 @@ class Mangas extends Model
     protected $fillable = [
         'manga_name',
         'manga_cover',
-        'author',
-        'synopsis',
+        'manga_author',
+        'manga_synopsis',
         'manga_banner',
         'manga_directory',
         'manga_home_order',

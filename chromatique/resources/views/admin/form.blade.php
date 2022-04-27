@@ -11,6 +11,11 @@
           <input type="file" name="mangaCover" class="myfrm form-control">
         </div>
 
+        <div class="">
+          <label class="text-white" for="mangaCover">Banniere du Manga</label>
+          <input type="file" name="mangaBanner" class="myfrm form-control">
+        </div>
+
         <div class="" >
           <label class="text-white" for="mangaName">Nom du Manga</label>
           <input class="form-control" type="text" name="mangaName" id="mangaName">

@@ -4,8 +4,10 @@
 <div class="container">
   <div class="row">
     <h3 class="col-8 text-white">Modification du Manga {{$manga->manga_name}} </h3>
-    <form method="post" action="{{route('admin_edit_manga', [ 'id'=> $manga->id ])}}" enctype="multipart/form-data" class="col-8 align-self-center">
-      {{csrf_field()}}
+    <form method="POST" action="{{route('admin_edit_manga', [ 'id'=> $manga->id ])}}" enctype="multipart/form-data" class="col-8 align-self-center">
+        @csrf
+        @method('PATCH')
+
         <div class="">
           <label class="text-white" for="mangaCover">Couverture du Manga :</label>
           <div class="card">

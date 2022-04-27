@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -47,7 +48,8 @@ class AdminMangasController extends Controller
     public function form_edit($id)
     {
         $manga = Mangas::find($id);
-        // Rtourne le formulaire prés-rempli avec les données du manga
+        
+        // Retourne le formulaire prés-rempli avec les données du manga
         return view('admin/form_edit', [
             'manga' => $manga
         ]);
@@ -58,10 +60,28 @@ class AdminMangasController extends Controller
      *
      * @return App\Models\Mangas
      */
-    public function edit($id)
-    {
+    public function edit($id, Request $request, User $user) {
+        // $this->authorize('edit', $user);
+
+        $author = $request->input('author');
+        $synopsis = $request->input('synopsis');
+        $mangaBanner = $request->input('banner');
+        $mangaCover = $request->input('cover');
+        
+        // dump($id);
+        $manga = Mangas::where("id", $id)->update(
+            ['manga_cover' => $mangaCover . ".jpg",
+            'manga_directory' => "/". $request->input(trim('mangaName')),
+            'manga_banner' => "/" . $mangaBanner,
+            'manga_author' => $author,
+            'manga_synopsis' => $synopsis,
+            'uploader_id' => Auth::user()->id,
+            'updated_at' => new \datetime()],
+        );
+        $listManga = Mangas::all()->sortBy('manga_name');
+        // dd($manga);
         return view('admin/browse', [
-            'manga' => Mangas::find($id)
+            'listMangas' => $listManga,
         ]);
     }
 
@@ -73,7 +93,7 @@ class AdminMangasController extends Controller
      */
     public function form()
     {
-        // il faut récupérer le nom d'utilisateur de la session en cours plutôt que de lister touts les uploaders
+        // il faut récupérer l'utilisateur de la session en cours plutôt que de lister touts les uploaders
         $uploaderList = User::All();
         // dd($uploaderList);
 
@@ -93,57 +113,48 @@ class AdminMangasController extends Controller
         $mangaName = $request->input(trim('mangaName'));
         $author = $request->input('author');
         $synopsis = $request->input('synopsis');
-        $bannerPath = $request->input('banner');
-        $coverPath = $request->input('cover');
-        // $uploaderId = $request->input('uploaderId');
-
         //Récupération de la couverture du manga et verification de son type
         $this->validate($request, [
                 'mangaCover' => 'required',
+                'mangaBanner' => 'required',
                 'mangaCover.*' => 'mimes:jpg,png'
         ]);
+            // Ajout de la couverture du manga
+            if($request->hasfile('mangaCover'))
+            {
+                $formatName = str_replace(' ', '_', $mangaName);
+                $coverName = $formatName . '.' . $request->file('mangaCover')->extension();
 
-        // Ajout de la couverture du manga
-        // if($request->hasfile('mangaCover'))
-        // {
-        //     // Récupération du fichier uploadé
-        //     $cover = $request->file('mangaCover');
+                // Récupération du fichier uploadé            
+                $cover = Storage::disk('mangas')->putFileAs($formatName, $request->file('mangaCover'), $coverName);
 
-        //     // On prend le nom du manga puis on renomme le fichier uploadé avec 
-        //     // son nom et on ajoute à l'extension du fichier uploadé le chemin du fichier ex : one_piece/one_piece.jpg
+                $formatBanner = str_replace(' ', '_', $mangaName);
+                $bannerName = $formatBanner . '_banner'. '.' . $request->file('mangaCover')->extension();
 
-        //     // On sépare la string pour reformatter le text et on passe tout en minuscule
-        //     $mangaDirectory = strtolower($mangaName);
-        //     $mangaDirectory =  str_replace(' ', '_', $mangaName );
+                $mangaBanner = Storage::disk('mangas')->putFileAs($formatBanner, $request->file('mangaBanner'), $bannerName);
+                // On prend le nom du manga puis on renomme le fichier uploadé avec 
+                // son nom et on ajoute à l'extension du fichier uploadé le chemin du fichier ex : one_piece/one_piece.jpg
 
-        //     // On attribue le même nom au fichier de la cover
-        //     $coverName = $mangaDirectory;
+                // On sépare la string pour reformatter le text et on passe tout en minuscule
+                $mangaDirectory = strtolower($mangaName);
+                $mangaDirectory =  str_replace(' ', '_', $mangaName );
 
-        //     // On définit le chemin du fichier cover pour la BDD
-        //     $coverPath = '/' . $coverName . '.' . $cover->extension();
+                // On attribue le même nom au fichier de la cover
+                $mangaCover = explode('/', $cover);
+                // dd($mangaCover[1]);
 
-        //     // On déplace le fichier dans le répertoire assets du dossier public
-        //     // Chemin vers le fichier manga
-        //     $mangaPath = $mangaDirectory .'/'. $coverName . '.' . $cover->extension();
-            
-        //     // Chemin vers le dossier public
-        //     $publicPath = public_path('assets/mangas'). $mangaDirectory;
-        //     $cover->move($publicPath, $mangaPath);  
-        // }
 
-            
-
-        $file= new Mangas();
-        $file->manga_name = ucfirst($mangaName);
-        $file->manga_cover = ucfirst($coverPath);
-        // $file->manga_directory = '/' . $mangaDirectory;
-        $file->manga_author = $author;
-        $file->manga_synopsis = $synopsis;
-        $file->manga_bannerPath = $bannerPath;
-        // $file->uploader_id = $uploaderId ;
-        $file->updated_at = new \datetime();
-        $file->save();
-
+        Mangas::firstOrCreate(
+            ['manga_name' => $mangaName],
+            ['manga_cover' => $mangaCover[1],
+            'manga_directory' => "/". $mangaDirectory,
+            'manga_banner' => "/" . $mangaBanner,
+            'manga_author' => $author,
+            'manga_synopsis' => $synopsis,
+            'uploader_id' => Auth::user()->id,
+            'created_at' => new \datetime()],
+        );
+    }
         // return redirect()->route('profile');
         return back()->with('success', 'Le manga ' . $mangaName . ' à était ajouté !', 200);
     }
@@ -169,7 +180,7 @@ class AdminMangasController extends Controller
                 ['manga_cover' => $newManga . ".jpg",
                 'manga_directory' => "/". $newManga,
                 'manga_banner' => '/banner_default.jpg',
-                'uploader_id' => "1",
+                'uploader_id' => Auth::user()->id,
                 'created_at' => new \datetime()],
             );
 
