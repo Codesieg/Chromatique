@@ -152,53 +152,18 @@
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
-    // authenticate().then(loadClient());
-    
-    return gapi.client.drive.files.list({
-      'supportsAllDrives': true,
-      'includeItemsFromAllDrives': true,
-      'corpora': 'drive',
-      'driveId':'0AFIye_b5hvkvUk9PVA',
-      'fields':'files(id,name, parents, webViewLink)',
-
-    })
+    return gapi.client.drive.files.list({})
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                let allDir = response.result.files;
-                for (const dir of allDir) {
-                  console.log(dir);
-                  const getUl = document.querySelector('.list-manga-dir');
-                  let creatLi = document.createElement('li');
-                  let creatA = document.createElement('a');
-                
-                  creatA.setAttribute('href', dir['webViewLink']);
-                  creatA.textContent = dir['name'];
-                  getUl.appendChild(creatLi);
-                  const getElementLi = getUl.lastChild;
-                  console.log(creatA);
-                  getElementLi.appendChild(creatA);
-
-                  console.log("Nom : ", dir['name']);
-                  console.log("Link : ", dir['webViewLink']);
-                }
-                console.log("Response", response.result.files);
+                console.log("Response", response);
               },
-        // .then(function(response) {
-        //   const getUl = document.querySelector('list-manga-dir');
-        //   let creatLi = document.createElement('li');
-        //   response.forEach((item, index) => {
-        //     getUl.appendChild(creatLi);
-        //   })
-        // },
               function(err) { console.error("Execute error", err); });
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "763374182806-7g4ufr9sr7dtur1ua16bihe4j9f6iga5.apps.googleusercontent.com"});
   });
 </script>
-<button onclick="authenticate().then(loadClient).then(execute)">authorize and load</button>
+<button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
-<ul class="list-manga-dir">
-</ul>
   </body>
 </html>

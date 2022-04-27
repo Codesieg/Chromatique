@@ -167,16 +167,11 @@
                 let allDir = response.result.files;
                 for (const dir of allDir) {
                   console.log(dir);
-                  const getUl = document.querySelector('.list-manga-dir');
-                  let creatLi = document.createElement('li');
-                  let creatA = document.createElement('a');
-                
-                  creatA.setAttribute('href', dir['webViewLink']);
-                  creatA.textContent = dir['name'];
-                  getUl.appendChild(creatLi);
-                  const getElementLi = getUl.lastChild;
-                  console.log(creatA);
-                  getElementLi.appendChild(creatA);
+                  const getElementUl = document.querySelector('.list-manga-dir');
+                  let creatElementLi = document.createElement('li').textContent = dir['name'] + ' - ' + dir['webViewLink'];
+                  let creatElementA = document.createElement('a').setAttribute('href', dir['webViewLink']);
+                  
+                  getElementUl.appendChild(creatElementLi);
 
                   console.log("Nom : ", dir['name']);
                   console.log("Link : ", dir['webViewLink']);

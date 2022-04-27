@@ -159,27 +159,21 @@
       'includeItemsFromAllDrives': true,
       'corpora': 'drive',
       'driveId':'0AFIye_b5hvkvUk9PVA',
-      'fields':'files(id,name, parents, webViewLink)',
+      'webContentLink': true,
 
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 let allDir = response.result.files;
                 for (const dir of allDir) {
-                  console.log(dir);
+                  const element = dir['name'];
+                  const elementLink = dir['webContentLink'];
                   const getUl = document.querySelector('.list-manga-dir');
                   let creatLi = document.createElement('li');
-                  let creatA = document.createElement('a');
-                
-                  creatA.setAttribute('href', dir['webViewLink']);
-                  creatA.textContent = dir['name'];
+                  creatLi.textContent = element;
                   getUl.appendChild(creatLi);
-                  const getElementLi = getUl.lastChild;
-                  console.log(creatA);
-                  getElementLi.appendChild(creatA);
-
-                  console.log("Nom : ", dir['name']);
-                  console.log("Link : ", dir['webViewLink']);
+                  console.log("Nom : ", element);
+                  console.log("Link : ", elementLink);
                 }
                 console.log("Response", response.result.files);
               },

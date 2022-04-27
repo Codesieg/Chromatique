@@ -170,14 +170,11 @@
                   const getUl = document.querySelector('.list-manga-dir');
                   let creatLi = document.createElement('li');
                   let creatA = document.createElement('a');
-                
+                  creatLi.textContent = dir['name'] + ' - ' + dir['webViewLink'];
                   creatA.setAttribute('href', dir['webViewLink']);
-                  creatA.textContent = dir['name'];
                   getUl.appendChild(creatLi);
-                  const getElementLi = getUl.lastChild;
-                  console.log(creatA);
-                  getElementLi.appendChild(creatA);
-
+                
+                  creat
                   console.log("Nom : ", dir['name']);
                   console.log("Link : ", dir['webViewLink']);
                 }
