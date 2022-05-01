@@ -3,7 +3,7 @@
 @section('contenu')
 
 <div class="container">
-    <h2 class="white m-3">Liste des tomes de {{$mangaName->manga_name}}</h2>
+    <h2 class="white m-3">Liste des pages du tome {{$tome->tome_number}} de {{$mangaName->manga_name}}</h2>
     <div class="d-flex justify-content-between mb-3 px-3">
             <button type="button" class="btn btn-orange btn-sm white"><a href="{{route('admin_browse_mangas')}}"><i class="fa fa-angle-double-left white"></i></a></button>
             <button type="button" class="btn btn-orange btn-sm white"><a href="{{route('admin_form_tome', ['id' => $mangaName->id]) }}"><i class="fa fa-plus-square white"></i></a></button>        

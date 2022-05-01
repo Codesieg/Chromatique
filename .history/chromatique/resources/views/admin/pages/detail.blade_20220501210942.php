@@ -3,7 +3,7 @@
 @section('contenu')
 
 <div class="container">
-    <h2 class="white m-3">Liste des tomes de {{$mangaName->manga_name}}</h2>
+    <h2 class="white m-3">Liste des pages du tome {{$tome->tome_number}} de {{$mangaName->manga_name}}</h2>
     <div class="d-flex justify-content-between mb-3 px-3">
             <button type="button" class="btn btn-orange btn-sm white"><a href="{{route('admin_browse_mangas')}}"><i class="fa fa-angle-double-left white"></i></a></button>
             <button type="button" class="btn btn-orange btn-sm white"><a href="{{route('admin_form_tome', ['id' => $mangaName->id]) }}"><i class="fa fa-plus-square white"></i></a></button>        
@@ -35,7 +35,7 @@
                             <a class="text-decoration-none text-white" href="{{route('admin_form_edit_tome', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Modifier le manga"><i class="fa fa-edit white"></i></a>
                         </button>
                         <button type="button" class="btn btn-success btn-sm mx-2">
-                            <a class="text-decoration-none text-white" href="{{route('admin_read_page', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Voir les tomes"><i class="fa fa-eye white"></i></a>
+                            <a class="text-decoration-none text-white" href="{{route('admin_read_tome', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Voir les tomes"><i class="fa fa-eye white"></i></a>
                         </button>
                             <form action="{{route('admin_delete_tome', ['id' => $tome->id])}}" method="post">
                                 <button type="submit" class="btn-trash">

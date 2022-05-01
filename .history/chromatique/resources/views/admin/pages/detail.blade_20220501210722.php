@@ -35,7 +35,7 @@
                             <a class="text-decoration-none text-white" href="{{route('admin_form_edit_tome', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Modifier le manga"><i class="fa fa-edit white"></i></a>
                         </button>
                         <button type="button" class="btn btn-success btn-sm mx-2">
-                            <a class="text-decoration-none text-white" href="{{route('admin_read_page', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Voir les tomes"><i class="fa fa-eye white"></i></a>
+                            <a class="text-decoration-none text-white" href="{{route('admin_read_tome', ['id' => $tome->id]) }}" data-toggle="tooltip" data-placement="bottom" title="Voir les tomes"><i class="fa fa-eye white"></i></a>
                         </button>
                             <form action="{{route('admin_delete_tome', ['id' => $tome->id])}}" method="post">
                                 <button type="submit" class="btn-trash">

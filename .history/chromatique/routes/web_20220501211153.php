@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
+// use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
-use App\Http\Controllers\Admin\AdminPagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TomesController;
 use App\Http\Controllers\MangasController;
+// use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
-use App\Http\Controllers\Admin\AdminPagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,7 +117,7 @@ Route::delete(
 
 // Permet d'afficher le forms de modification d'un tome
 Route::get(
-    '/admin/tomes/edit/{id}',
+    '/admin/manga/edit/{id}',
     [AdminTomesController::class, 'form_edit']
 )->name('admin_form_edit_tome')->middleware('auth');
 
@@ -126,15 +126,6 @@ Route::patch(
     '/admin/tome/edit/{id}',
     [AdminTomesController::class, 'edit']
 )->name('admin_edit_tome')->middleware('auth');
-
-//-------------- Route back-office page ----------------
-
-// On liste tous les pages d'un tome
-Route::get(
-    '/admin/page/{id}',
-    [AdminPagesController::class, 'read']
-)->name('admin_read_page')->middleware('auth');
-
 
 // ---------------route d'authentification------------
 
