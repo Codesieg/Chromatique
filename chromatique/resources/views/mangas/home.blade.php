@@ -63,7 +63,7 @@
                                 </div>
                             @endforeach     
                         </div>
-                        {{-- stop brows new manga  --}}
+                        {{-- stop browse new manga  --}}
                     </div>
                     <div class="popular__product">
                         <div class="row">
