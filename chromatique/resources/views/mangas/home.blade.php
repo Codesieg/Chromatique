@@ -64,6 +64,7 @@
                             @endforeach     
                         </div>
                         <!-- end browse new manga -->
+
                     </div>
                     <div class="popular__product">
                         <div class="row">

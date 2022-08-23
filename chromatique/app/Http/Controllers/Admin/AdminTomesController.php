@@ -98,21 +98,21 @@ class AdminTomesController extends Controller
     }
 
     /**
-     *Add a new tome.
+     *Add a new tome manually.
      *
      * @return App\Models\Tomes
      */
     public function add(Request $request)
     {
-        // Récupération des upload
+        // // Récupération des uploads
         // $this->validate($request, [
         //         'pages' => 'required',
-        //         'pages.*' => 'mimes:jpg,png'
+        //         'pages.*' => 'mimes:jpg,png',
         //         ]);
 
         $tomeNumber = $request->input('tomeNumber');
         $mangaId = $request->input('mangaId');
-        
+
         // Récupération du répertoire du manga
         $mangaDirectory = Mangas::where('id', $mangaId)
                                     ->select('manga_directory')
@@ -124,10 +124,18 @@ class AdminTomesController extends Controller
         $tomeName = 'tome_'. $tomeNumber;
         Storage::disk('mangas')->makeDirectory($newMangaDirectory . '/' . $tomeName); 
 
+        //Enregistrement de la cover
+        if($request->hasfile('tomePath')) {
+
+            $tomeCover = $request->file('tomePath');
+            $tomeCover = $newMangaDirectory . '/' . $tomeName . '/' . $tomeCover->getClientOriginalName();        
+        }
+
         //  Ajout en bdd
         $newTome = Tomes::firstOrCreate(
             ['manga_id'=> $mangaId, 'tome_number' => $tomeNumber],
             ['tome_number' => $tomeNumber,
+            'tome_cover' => $tomeCover,
             'manga_id' => $mangaId,
             'created_at' => new \datetime(),
             'updated_at' => new \datetime()],
@@ -136,15 +144,19 @@ class AdminTomesController extends Controller
         // Boucle sur les pages
             if($request->hasfile('pages'))
             {
+                $pagesTest = ($request->file('pages'));
                 foreach ($request->file('pages') as $page) {
                     $pageFile = $newMangaDirectory . '/' . $tomeName . '/' . $page->getClientOriginalName();        
 
                 Storage::disk('mangas')->putFileAs($newMangaDirectory . '/' . $tomeName, $page , $page->getClientOriginalName());
 
+                $pageNumber = explode(".", $page->getClientOriginalName());
+                $pageNumber = $pageNumber[0];
+
                     // Création des pages du tome :
                     Pages::firstOrCreate(
-                        ['tome_id'=> $newTome->id, 'page_number' => $pageFile],
-                        ['page_number' => $pageFile, //TODO:  Venir récupérer le numero de la page
+                        ['tome_id'=> $newTome->id, 'page_file' => $pageFile],
+                        ['page_number' => $pageNumber,
                         'page_file' => $pageFile, 
                         'tome_id' => $newTome->id,
                         'created_at' => new \datetime(),
@@ -158,7 +170,7 @@ class AdminTomesController extends Controller
     }
 
         /**
-     *Add a new tome.
+     *Add a new tome auto.
      *
      * @return App\Models\Tomes
      */

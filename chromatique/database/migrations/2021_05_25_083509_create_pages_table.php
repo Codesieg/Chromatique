@@ -16,7 +16,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('page_file')->comment('page\'s path');
-            $table->integer('page_number')->comment('page\'s number');
+            $table->string('page_number')->comment('page\'s number');
             $table->timestamps();
         });
     }
