@@ -38,13 +38,13 @@
               @foreach ($uploaderList as $uploader)
                 <option value="{{$uploader->id}}">{{$uploader->name}}</option>
               @endforeach
-          </select>
-        </div> --}}
+          </select> --}}
+        </div>
 
         <button type="submit" class="btn btn-success" style="margin-top:10px">Ajouter</button>
     </form>        
     <div class="row">
-      <h3 class="col-8 text-white">Ajout automatique depuis dossier publique</h3>
+      <span class="col-8 mt-2 text-white">Ajout automatique depuis répertoire manga du serveur :</span>
       <form method="post" action="{{route('admin_insert_manga')}}" enctype="multipart/form-data" class="col-8 align-self-center">
         {{csrf_field()}}
         <button type="submit" class="btn btn-success" style="margin-top:10px">Scanner</button>
