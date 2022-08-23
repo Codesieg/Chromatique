@@ -153,8 +153,6 @@ class AdminTomesController extends Controller
                 $pageNumber = explode(".", $page->getClientOriginalName());
                 $pageNumber = $pageNumber[0];
 
-                dd($pageNumber);
-
                     // Création des pages du tome :
                     Pages::firstOrCreate(
                         ['tome_id'=> $newTome->id, 'page_number' => $pageFile],
