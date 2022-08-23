@@ -7,6 +7,7 @@ use App\Http\Controllers\MangasController;
 use App\Http\Controllers\Admin\AdminTomesController;
 use App\Http\Controllers\Admin\AdminMangasController;
 use App\Http\Controllers\Admin\AdminPagesController;
+use App\Http\Controllers\UsersDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -136,7 +137,7 @@ Route::get(
 )->name('admin_read_page')->middleware('auth');
 
 
-// ---------------route d'authentification------------
+// ---------------Route d'authentification------------
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -147,3 +148,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+// ---------------Route Page userdashboard------------
+
+Route::get(
+    '/user/{id}', 
+    [UsersDashboardController::class,'read']
+)->name('read_user');

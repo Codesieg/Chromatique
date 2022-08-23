@@ -65,6 +65,7 @@ class AdminMangasController extends Controller
         $synopsis = $request->input('synopsis');
         $mangaBanner = $request->input('banner');
         $mangaCover = $request->input('cover');
+        $coloredBy = $request->input('coloredBy');
         
         Mangas::where("id", $id)->update(
             ['manga_cover' => $mangaCover . ".jpg",
@@ -73,7 +74,9 @@ class AdminMangasController extends Controller
             'manga_author' => $author,
             'manga_synopsis' => $synopsis,
             'uploader_id' => Auth::user()->id,
-            'updated_at' => new \datetime()],
+            'updated_at' => new \datetime(),
+            'coloredBy' => $coloredBy,
+            ],
         );
         
         $listManga = Mangas::all()->sortBy('manga_name');
@@ -111,6 +114,8 @@ class AdminMangasController extends Controller
         $mangaName = $request->input(trim('mangaName'));
         $author = $request->input('author');
         $synopsis = $request->input('synopsis');
+        $coloredBy = $request->input('coloredBy');
+
         //Récupération de la couverture du manga et verification de son type
         $this->validate($request, [
                 'mangaCover' => 'required',
@@ -147,7 +152,9 @@ class AdminMangasController extends Controller
             'manga_author' => $author,
             'manga_synopsis' => $synopsis,
             'uploader_id' => Auth::user()->id,
-            'created_at' => new \datetime()],
+            'created_at' => new \datetime(),
+            'coloredBy' => $coloredBy,
+            ],
         );
     }
         // return redirect()->route('profile');

@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">Voir tous <span class="arrow_right"></span></a>
+                                    <a href="{{route('browse_all_mangas')}}" class="primary-btn">Voir tous les mangas <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -48,28 +48,29 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg" data-setbg="<?= asset('storage/mangas/') ?>{{$manga->manga_directory .'/'. $manga->manga_cover }}">
-                                            <div class="ep">18 / 18</div>
-                                            {{-- <div class="comment"><i class="fa fa-comments"></i> 11</div> --}}
-                                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                            <!-- TODO <div class="ep">18 / 18</div> -->
+                                            <!-- TODO <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                            <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
                                         </div>
                                         <div class="product__item__text">
-                                            <ul>
+                                            <!-- TODO <ul>
                                                 <li>Active</li>
                                                 <li>Shonen</li>
-                                            </ul>
+                                            </ul> -->
                                             <h5><a href="{{route('browse_tomes', ['id' => $manga->id]) }}">{{$manga->manga_name}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach     
                         </div>
-                        {{-- stop browse new manga  --}}
+                        <!-- end browse new manga -->
+
                     </div>
                     <div class="popular__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Mangas les plus vue</h4>
+                                    <h4>Mangas les plus vus</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -97,7 +98,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="recent__product">
+                    
+                    <!-- Doublons avec nouveautés ? -->
+                    <!-- <div class="recent__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
@@ -128,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">
@@ -175,7 +178,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="product__sidebar__comment">
+    <!-- TODO <div class="product__sidebar__comment">
         <div class="section-title">
             <h5>New Comment</h5>
         </div>
@@ -192,7 +195,7 @@
                 <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
             </div>
         </div>
-    </div> --}}
+    </div>  -->
 </div>
 </div>
 </div>

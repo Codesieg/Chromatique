@@ -32,6 +32,7 @@
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
@@ -75,7 +76,7 @@
                                         </li>
                                         
                                         @if (Auth::check())
-                                        <li><a href="">Mon profil</a></li>
+                                        <li><a href="{{route('read_user', ['id' => Auth::user()->id]) }}">Mon profil</a></li>
                                         <li><a href="">Mes mangas</a></li>
                                             @if (Auth::user()->isUploader == 1)
                                                 <li><a href="{{route('admin_browse_mangas')}}">Gestion Manga</a></li>
