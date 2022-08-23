@@ -155,7 +155,7 @@ class AdminTomesController extends Controller
 
                     // Création des pages du tome :
                     Pages::firstOrCreate(
-                        ['tome_id'=> $newTome->id, 'page_number' => $pageFile],
+                        ['tome_id'=> $newTome->id, 'page_file' => $pageFile],
                         ['page_number' => $pageNumber,
                         'page_file' => $pageFile, 
                         'tome_id' => $newTome->id,
