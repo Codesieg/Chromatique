@@ -52,10 +52,10 @@
                                         <ul>
                                             <!-- TODO : <li><span>Type :</span>Shomen</li> -->
                                             <li><span>Autheur :</span>{{ $mangaDetails->manga_author }}</li>
-                                            <li><span>Date d'ajout :</span> {{ $mangaDetails->updated_at }}</li>
+                                            <li><span>Date d'ajout :</span>{{ $mangaDetails->updated_at }}</li>
                                             <li><span>Status :</span> En cours</li>
-                                            <li><span>Uploadeur :</span> {{ $uploader->name }}</li>
-                                            <li><span>Colorisé par :</span> Sardan</li>
+                                            <li><span>Uploadeur :</span>{{ $uploader->name }}</li>
+                                            <li><span>Colorisé par :</span>{{ $mangaDetails->coloredBy }}</li>
                                             <!-- TODO <li><span>Genre :</span> Action, Adventure, Fantasy, Magic</li> -->
                                         </ul>
                                     </div>
