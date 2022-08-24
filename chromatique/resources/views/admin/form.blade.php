@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group" >
-          <label class="text-white" for="coloredBy">Choisir un utilisateur :</label>
+          <label class="text-white" for="coloredBy">Colorisé par :</label>
           <select name="coloredBy" id="coloredBy">
                 <option option value="">-- Choisir un utilisateur --</option>
               @foreach ($listUsers as $user)
