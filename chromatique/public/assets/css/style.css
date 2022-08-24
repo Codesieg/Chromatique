@@ -658,6 +658,12 @@ Hero
 	border-radius: 5px;
 }
 
+.product__item__pic--all{
+	height: 400px;
+	position: relative;
+	border-radius: 5px;
+}
+
 .product__item__pic .ep {
 	font-size: 13px;
 	color: #ffffff;

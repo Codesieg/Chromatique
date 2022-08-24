@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mangas;
 // use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 
 class MangasController extends Controller
@@ -16,8 +16,11 @@ class MangasController extends Controller
      */
     public function home()
     {
-        $listManga = Mangas::all()->sortBy('manga_name');
+        // ne faut-il pas plus tôt ici récupérer les derniers tomes mise en ligne ?
+        // $listManga = DB::table('mangas')->sortBy('manga_name')->limit(3);
+        $listManga = Mangas::take(3)->orderByDesc('created_at')->get();
         // $userIsUploader = Auth::user()->isUploader;
+
         return view('mangas/home', [
             'listMangas' => $listManga,
             // 'userIsUploader' => $userIsUploader,
@@ -30,7 +33,7 @@ class MangasController extends Controller
      */
     public function browse()
     {
-        $listManga = Mangas::select('manga_name')->get();
+        $listManga = Mangas::all()->sortBy('manga_name');
         return view('mangas/browse', [
             'listMangas' => $listManga
         ]);

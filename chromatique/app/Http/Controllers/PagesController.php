@@ -26,7 +26,7 @@ class PagesController extends Controller
     }
 
     /**
-     * Show all the tomes  from a page in database.
+     * Show all the page from a tome in database.
      *
      * @return App\Models\Tomes
      */
@@ -45,6 +45,8 @@ class PagesController extends Controller
             'pages/browse',
             compact('listPages',)
         );
+
+        
     }
 
     /**

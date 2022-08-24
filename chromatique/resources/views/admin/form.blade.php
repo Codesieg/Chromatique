@@ -24,8 +24,18 @@
         </div>
 
         <div class="form-group" >
-          <label class="text-white" for="author">Autheur</label>
+          <label class="text-white" for="author">Auteur</label>
           <input class="form-control" type="text" name="author" id="author">
+        </div>
+
+        <div class="form-group" >
+          <label class="text-white" for="coloredBy">Choisir un utilisateur :</label>
+          <select name="coloredBy" id="coloredBy">
+                <option option value="">-- Choisir un utilisateur --</option>
+              @foreach ($listUsers as $user)
+                <option value="{{$user->id}}">{{$user->name}}</option>
+              @endforeach
+          </select>
         </div>
 
         <div class="form-group" >

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ChaptersController extends Controller
 {
-        /**
+    /**
      * Show all the chapters for one tome from database.
      *
      * @return App\Models\Chapters
