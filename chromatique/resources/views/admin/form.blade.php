@@ -2,8 +2,10 @@
 
 @section('contenu')
 <div class="container">
-  <div class="row">
-    <h3 class="col-8 text-white">Ajout d'un nouveau Manga</h3>
+    <h3 class="m-3 text-white">Ajout d'un nouveau Manga</h3>
+    <div class="d-flex justify-content-between mb-3 px-3">
+      <button type="button" class="btn btn-orange btn-sm white"><a href="{{route('admin_browse_mangas')}}"><i class="fa fa-angle-double-left white"></i></a></button>
+    </div>
     <form method="post" action="{{route('admin_add_manga')}}" enctype="multipart/form-data" class="col-8 align-self-center">
       {{csrf_field()}}
         <div class="">
@@ -30,17 +32,6 @@
           <label class="text-white" for="synopsis">Synopsis</label>
           <input class="form-control" type="text" name="synopsis" id="synopsis">
         </div>
-        {{-- <div class="form-group" >
-          <label class="text-white" for="uploaderId">Uploader</label>
-        
-          <select class="form-control" name="uploaderId" id="uploaderId">
-            <option value="">--Choisir un uploader--</option>
-              @foreach ($uploaderList as $uploader)
-                <option value="{{$uploader->id}}">{{$uploader->name}}</option>
-              @endforeach
-          </select> --}}
-        </div>
-
         <button type="submit" class="btn btn-success" style="margin-top:10px">Ajouter</button>
     </form>        
     <div class="row">

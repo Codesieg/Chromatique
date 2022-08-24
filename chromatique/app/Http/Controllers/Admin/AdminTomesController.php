@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Mangas;
 use App\Models\Pages;
 use App\Models\Tomes;
-use App\Models\Mangas;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-
 
 class AdminTomesController extends Controller
 {
@@ -41,19 +39,45 @@ class AdminTomesController extends Controller
         return view('admin/tomes/detail', compact('listTomes', 'mangaName'));
     }
 
+    /**
+     * Show the forms to modify tome by id.
+     *
+     * @return App\Models\Mangas
+     */
+    public function form_edit($id)
+    {
+        $tome = Tomes::find($id);
+        $mangaName = Mangas::find($tome->manga_id);
+        // dd($mangaName);
+        // Retourne le formulaire prés-rempli avec les données du manga
+        return view('admin/tomes/form_edit', [
+            'tome' => $tome,
+            'mangaName' => $mangaName,
+        ]);
+    }
 
     /**
      * Modify the tome by id.
      *
-     * @return App\Models\Tomes
+     * @return App\Models\Mangas
      */
-    public function edit($id)
-    {
-        $mangaLists = Mangas::all()->sortBy('manga_name');
-        $mangaName = Mangas::find($id);
-        $tome = Tomes::find($id);
+    public function edit($id, Request $request) {
+        $tomeNumber = $request->input('tomeNumber');
+        $mangaId = $request->input('mangaId');
+        
+        Tomes::where("id", $id)->update(
+            ['manga_id'=> $mangaId, 'tome_number' => $tomeNumber],
+            ['tome_number' => $tomeNumber,
+            'manga_id' => $mangaId,
+            'created_at' => new \datetime(),
+            'updated_at' => new \datetime()],
+            );
+        
+        $listManga = Mangas::all()->sortBy('manga_name');
 
-        return view('admin/tomes/edit', compact('mangaLists', 'tome', 'mangaName'));
+        return view('admin/browse', [
+            'listMangas' => $listManga,
+        ]);
     }
 
     /**
@@ -74,79 +98,70 @@ class AdminTomesController extends Controller
     }
 
     /**
-     *Add a new tome.
+     *Add a new tome manually.
      *
      * @return App\Models\Tomes
      */
     public function add(Request $request)
     {
-        // Récupération de l'upload de la cover
-        $this->validate($request, [
-                'tomePath' => 'required',
-                'tomePath.*' => 'mimes:jpg,png'
-                ]);
-        // Récupération des uploades des pages
-        $this->validate($request, [
-            'pages' => 'required',
-            'pages.*' => 'mimes:jpg,png'
-        ]);
+        // // Récupération des uploads
+        // $this->validate($request, [
+        //         'pages' => 'required',
+        //         'pages.*' => 'mimes:jpg,png',
+        //         ]);
 
         $tomeNumber = $request->input('tomeNumber');
         $mangaId = $request->input('mangaId');
-        
 
         // Récupération du répertoire du manga
         $mangaDirectory = Mangas::where('id', $mangaId)
-                            ->get();
+                                    ->select('manga_directory')
+                                    ->get();
 
-        foreach ($mangaDirectory as $manga) {
-            $mangaDirectory = $manga->manga_directory;
+        $newMangaDirectory = $mangaDirectory[0]->manga_directory;
+        
+        // Création du nouveau repertoire 
+        $tomeName = 'tome_'. $tomeNumber;
+        Storage::disk('mangas')->makeDirectory($newMangaDirectory . '/' . $tomeName); 
+
+        //Enregistrement de la cover
+        if($request->hasfile('tomePath')) {
+
+            $tomeCover = $request->file('tomePath');
+            $tomeCover = $newMangaDirectory . '/' . $tomeName . '/' . $tomeCover->getClientOriginalName();        
         }
 
-        // à la création d'un nouveau tome, il faut créer un nouveau dossier (tomme xx)
-        // Récupérer le nom du fichier et le renomer
-        if($request->hasfile('tomePath'))
-            {
-                // Récupération du fichier uploadé
-                $cover = $request->file('tomePath');
+        //  Ajout en bdd
+        $newTome = Tomes::firstOrCreate(
+            ['manga_id'=> $mangaId, 'tome_number' => $tomeNumber],
+            ['tome_number' => $tomeNumber,
+            'tome_cover' => $tomeCover,
+            'manga_id' => $mangaId,
+            'created_at' => new \datetime(),
+            'updated_at' => new \datetime()],
+            );
 
-                // On attribue le nom du tome pour la bdd et la création du dossier
-                $tomeName = 'tome_'. $tomeNumber;
-
-                // On définit le chemin du fichier cover pour la BDD
-                $coverPath = '/' . $tomeName . '/' . $tomeName . '.' . $cover->extension();  
-                // Chemin vers le dossier public
-                $publicPath = public_path() . '/assets/mangas/'. $mangaDirectory. '/'. $tomeName;      
-                $cover->move($publicPath, $coverPath);
-
-                  // Création du tome :
-        $tome = new Tomes();
-        $tome->tome_path = $coverPath;
-        $tome->tome_number = $tomeNumber;
-        $tome->manga_id = $mangaId;
-        $tome->created_at = new \datetime();
-        $tome->save();
-        $lastTomeId = $tome->id;
-            }
         // Boucle sur les pages
             if($request->hasfile('pages'))
             {
+                $pagesTest = ($request->file('pages'));
                 foreach ($request->file('pages') as $page) {
-                    // dump($page->getClientOriginalName());
-                    $pagePath = $mangaDirectory . '/' . $tomeName . '/' . $page->getClientOriginalName();        
-                    $page->move(public_path().'/assets/mangas/'. $mangaDirectory . '/'. ucfirst($tomeName), $pagePath);
-                    $pageNumber = explode('-', $pagePath);
-                    // dd(substr($pageNumber[1], 0, 2));
-                       // Création des pages du tome :
-                    $page = new Pages();
-                    $page->page_file = $pagePath;
-                    $page->page_number = substr($pageNumber[1], 0, 2);
-                    // faire un explode sur le nom du fichier
-                    $page->tome_id = $lastTomeId;
-                    // $page->chapters_id = $pageNumber[0];
-                    $page->created_at = new \datetime();
-                    $page->save();
+                    $pageFile = $newMangaDirectory . '/' . $tomeName . '/' . $page->getClientOriginalName();        
 
+                Storage::disk('mangas')->putFileAs($newMangaDirectory . '/' . $tomeName, $page , $page->getClientOriginalName());
+
+                $pageNumber = explode(".", $page->getClientOriginalName());
+                $pageNumber = $pageNumber[0];
+
+                    // Création des pages du tome :
+                    Pages::firstOrCreate(
+                        ['tome_id'=> $newTome->id, 'page_file' => $pageFile],
+                        ['page_number' => $pageNumber,
+                        'page_file' => $pageFile, 
+                        'tome_id' => $newTome->id,
+                        'created_at' => new \datetime(),
+                        'updated_at' => new \datetime()],
+                    );
                 }
             
             }
@@ -155,7 +170,7 @@ class AdminTomesController extends Controller
     }
 
         /**
-     *Add a new tome.
+     *Add a new tome auto.
      *
      * @return App\Models\Tomes
      */
@@ -198,7 +213,7 @@ class AdminTomesController extends Controller
                     $pagePath = implode("/", $pagePath);
 
                     Pages::firstOrCreate(
-                        ['tome_id'=> $lastTomeId, 'page_number' => $tomeNumber[1]],
+                        ['tome_id'=> $lastTomeId, 'page_number' => $pagePath],
                         ['page_number' => $pagePath, //TODO:  Venir récupérer le numero de la page
                         'page_file' => $pagePath, 
                         'tome_id' => $lastTomeId,
@@ -218,29 +233,21 @@ class AdminTomesController extends Controller
         // Je recherche si le tome existe dans la bdd via son id
         $tome = Tomes::find($id);
 
-        //je récupére le répertoire du manga correspondant au tome
         $manga = Mangas::find($tome->manga_id);
         $mangaDirectory = $manga->manga_directory;
-        //  Je fait un explode sur le chemin du tome afin de récupérer uniquement le nom du dosier
-        $tomePath = explode('/', $tome->tome_path);
-
-        // je renseigne le chemein du dossier
-        $tomeDirectory = public_path() . '/assets/mangas' .  $mangaDirectory . '/'. $tomePath[1] ;
-
-        // si le tome existe
+    
         if ($tome) {
-            // je vais chercher si son répertoire existe
-            if (File::exists($tomeDirectory)) {
-            // si le répertoire existe je le supprime avec toutes ses dépendances (fichiers, sous dossier)
-                File::deleteDirectory($tomeDirectory);       
-            }else {
+
+            $deleteTome = Storage::disk('mangas')->deleteDirectory($mangaDirectory . '/tome_' . $tome->tome_number);  
+
+            if ($deleteTome == false) {
             // je retourne un message d'erreur
             return back()->with('error', 'Le dossier pour le tome  ' . $tome->tome_name . ' n\'éxiste pas !', 404);
             }
+
             // je supprime le tome de la bdd et tooutes ses données associés 
             $tome::destroy($id);
             // je retourne un message de succés
-            // return back()->with($id . " supprimer", 200);
             return back()->with('success', 'Le tome ' . $tome->tome_name . ' à bien était supprimé !', 200);
         } else {
             // Je retourne un message d'erreur
